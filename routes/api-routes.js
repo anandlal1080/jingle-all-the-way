@@ -40,6 +40,7 @@ module.exports = function (app) {
   app.get("/api/user_data", async function (req, res) {
     if (!req.user) {
       // The user is not logged in, send back an empty object
+      
       res.json({});
     } else {
       // Otherwise send back the user's email and id
