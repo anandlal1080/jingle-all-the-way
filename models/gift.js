@@ -1,21 +1,18 @@
-// / Dependencies
+module.exports = function (sequelize, DataTypes) {
+  var Gift = sequelize.define("gift_table", {
+    // Giving the Gift model a name of type STRING
+    list_id: Sequelize.INTEGER,
+    gift_name: Sequelize.STRING,
+    gift_url: Sequalize.TEXT,
+  });
 
-// Sequelize (capital) references the standard library
-var Sequelize = require("sequelize");
-// sequelize (lowercase) references my connection to the DB.
-var sequelize = require("  ");
+  Gift.associate = function (models) {
+    models.Gift.hasMany(models.List, {
+      foreignKey: {
+        allowNull: false,
+      },
+    });
+  };
 
-// Creates a "Gift" model that matches up with DB
-var Gift = sequelize.define("gift", {
-  item: Sequelize.STRING,
-  description: Sequelize.STRING,
-  category: Sequelize.STRING,
-  price: Sequelize.INTEGER,
-  url: Sequalize.TEXT
-});
-
-// Syncs with DB
-Gift.sync();
-
-// Makes the Gift Model available for other files (will also create a table)
-module.exports = Gift;
+  return Gift;
+};

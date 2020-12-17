@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": null,
-    "database": "passport_demo",
+    "database": "jingle_all_the_way_db",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
