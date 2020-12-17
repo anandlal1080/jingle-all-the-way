@@ -46,13 +46,19 @@ module.exports = function (app) {
       // Sending back a password, even a hashed password, isn't a good idea
       try {
         // return the result to the user with res.json
-        res.json(
-          await db.list.findAll({
-            where: {
-              user_id: req.user.id,
-            },
-          })
-        );
+        const list = await db.list.findAll({
+          where: {
+            user_id: req.user.id,
+          },
+        });
+        console.log(list);
+        res.json({
+          list,
+          user: {
+            first_name: req.user.first_name,
+            last_name: req.user.last_name,
+          },
+        });
       } catch (err) {
         res.status(500).end();
       }
