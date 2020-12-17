@@ -228,8 +228,14 @@ body {
   text-align: center;
 }
 label {
-  font-size: 3rem;
+  font-size: 2rem;
   text-shadow: 2px 2px rgb(253, 253, 253);
   /* color: red; */
 }
 
+.signup {
+  /* background-color: red; */
+  font-size: 25px;
+  text-shadow: 2px 2px rgb(253, 253, 253);
+  margin-left: 30%;
+}
