@@ -42,12 +42,12 @@ module.exports = function (sequelize, DataTypes) {
     );
   });
 
-  User.associate = function (models) {
-    models.User.hasMany(models.List, {
-      foreignKey: {
-        allowNull: false,
-      },
-    });
-  };
+  // User.associate = function (models) {
+  //   models.User.hasMany(models.List, {
+  //     foreignKey: {
+  //       allowNull: false,
+  //     },
+  //   });
+  // };
   return User;
 };
