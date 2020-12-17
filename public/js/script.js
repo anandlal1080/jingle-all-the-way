@@ -15,5 +15,10 @@ function initialApiCall() {
   }).then(function (data) {
     const allResults = data.results;
     console.log(allResults.length);
+
+    for (let index = 0; index < allResults.length; index++) {
+        const resultItem = allResults[index];
+        
+    }
   });
 }
