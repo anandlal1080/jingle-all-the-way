@@ -14,7 +14,6 @@ module.exports = function (app) {
   // how we configured our Sequelize User Model. If the user is created successfully, proceed to log the user in,
   // otherwise send back an error
   app.post("/api/signup", function (req, res) {
-    console.log(req.body);
     db.user
       .create({
         first_name: req.body.first,
@@ -40,7 +39,7 @@ module.exports = function (app) {
   app.get("/api/user_data", async function (req, res) {
     if (!req.user) {
       // The user is not logged in, send back an empty object
-      
+
       res.json({});
     } else {
       // Otherwise send back the user's email and id
@@ -48,7 +47,7 @@ module.exports = function (app) {
       try {
         // return the result to the user with res.json
         res.json(
-          await db.List.findAll({
+          await db.list.findAll({
             where: {
               user_id: req.user.id,
             },
@@ -59,20 +58,4 @@ module.exports = function (app) {
       }
     }
   });
-
-  // app.get("/api/user_data", async function (req, res) {
-  //   // Add sequelize code to find all posts where the category is equal to req.params.category,
-  //   try {
-  //     // return the result to the user with res.json
-  //     res.json(
-  //       await db.List.findAll({
-  //         where: {
-  //           user_id: req.user.id,
-  //         },
-  //       })
-  //     );
-  //   } catch (err) {
-  //     res.status(500).end();
-  //   }
-  // });
 };
