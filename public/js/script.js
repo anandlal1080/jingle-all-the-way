@@ -21,6 +21,7 @@ function initialApiCall() {
   });
 }
 function secondApiCall(listingId) {
+  //   console.log(listingId);
   $.ajax({
     url:
       "https://cors-anywhere.herokuapp.com/https://openapi.etsy.com/v2/listings/" +
