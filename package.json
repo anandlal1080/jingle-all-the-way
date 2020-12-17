@@ -13,7 +13,11 @@
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "2.4.3",
+<<<<<<< HEAD
     "express": "^4.17.0",
+=======
+    "express": "^4.17.1",
+>>>>>>> 8b40db95189ccd0610b0175884eb9bd4f2eb1de4
     "express-handlebars": "^5.2.0",
     "express-session": "^1.16.1",
     "jquery": "^3.5.1",
