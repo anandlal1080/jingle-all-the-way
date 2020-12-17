@@ -13,6 +13,7 @@ body {
   height: 100vh;
   background: #262626 url(../images/snow2.jpeg);
   background-image: cover;
+  background-repeat: no-repeat;
 }
 .banner {
   width: 100%;
@@ -191,4 +192,27 @@ body {
   font-size: 60px;
   color: white;
   text-shadow: 2px 2px rgb(5, 5, 5);
+}
+.login {
+  /* background-color: red; */
+  font-size: 25px;
+  text-shadow: 2px 2px rgb(253, 253, 253);
+  margin-left: 30%;
+}
+#login h2, p {
+  margin-left: 30%;
+}
+#login p {
+  font-size: 2rem;
+  margin-left: 40%;
+}
+#logtext {
+  font-size: 4rem;
+  text-shadow: 2px 2px rgb(253, 253, 253);
+  text-align: center;
+}
+label {
+  font-size: 3rem;
+  text-shadow: 2px 2px rgb(253, 253, 253);
+  /* color: red; */
 }
