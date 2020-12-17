@@ -6,10 +6,11 @@ module.exports = function (sequelize, DataTypes) {
   });
 
   List.associate = function (models) {
-    models.list.belongsToMany(models.Gift, {
-      foreignKey: {
-        allowNull: false,
-      },
+    models.list.belongsToMany(models.gift_table, {
+      // foreignKey: {
+      //   allowNull: false,
+      // },
+      through: "giftlist",
     });
   };
 

@@ -43,7 +43,7 @@ module.exports = function (sequelize, DataTypes) {
   });
 
   User.associate = function (models) {
-    models.user.hasMany(models.List, {
+    models.user.hasMany(models.list, {
       foreignKey: {
         allowNull: false,
       },

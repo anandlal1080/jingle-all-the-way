@@ -7,12 +7,15 @@ module.exports = function (sequelize, DataTypes) {
   });
 
   Gift.associate = function (models) {
-    models.gift_table.hasMany(models.List, {
-      foreignKey: {
-        allowNull: false,
-      },
+    models.gift_table.belongsToMany(models.list, {
+      // foreignKey: {
+      //   allowNull: false,
+      // },
+      through: "giftlist",
     });
   };
 
   return Gift;
 };
+
+// Gft = sequlize.literal(`()`);
