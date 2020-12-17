@@ -21,13 +21,12 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-  
 }
 .banner h1 {
-  font-size: 80px ;
+  font-size: 80px;
   color: rgb(223, 11, 11);
   font-weight: 300;
-  font-family: 'Mountains of Christmas', cursive;
+  font-family: "Mountains of Christmas", cursive;
   text-shadow: 2px 2px black;
   margin-bottom: 30px;
   /* animation-name: moveLeft loco;
@@ -39,19 +38,40 @@ body {
   animation-delay: 2s;
 }
 @keyframes loco {
-
-   0% {color: rgb(255, 0, 0);}
-  10% {color: rgb(250, 84, 7);}
-  20% {color: rgb(250, 205, 4);}
-  30% {color: rgb(201, 252, 82);}
-  40% {color: rgb(84, 250, 43);}
-  50% {color: rgb(84, 250, 43);}
-  60% {color: rgb(201, 252, 82);}
-  70% {color: rgb(250, 205, 4);}
-  80% {color: rgb(250, 84, 7);}
-  90% {color: rgba(250, 44, 44,);}
-  100% {color: rgba(255, 0, 0,);}
-}    
+  0% {
+    color: rgb(255, 0, 0);
+  }
+  10% {
+    color: rgb(250, 84, 7);
+  }
+  20% {
+    color: rgb(250, 205, 4);
+  }
+  30% {
+    color: rgb(201, 252, 82);
+  }
+  40% {
+    color: rgb(84, 250, 43);
+  }
+  50% {
+    color: rgb(84, 250, 43);
+  }
+  60% {
+    color: rgb(201, 252, 82);
+  }
+  70% {
+    color: rgb(250, 205, 4);
+  }
+  80% {
+    color: rgb(250, 84, 7);
+  }
+  90% {
+    color: rgba(250, 44, 44);
+  }
+  100% {
+    color: rgba(255, 0, 0);
+  }
+}
 
 .banner span {
   text-transform: uppercase;
@@ -62,7 +82,6 @@ body {
   animation-timing-function: ease;
   animation-iteration-count: infinite;
   animation-delay: 2s; */
-
 }
 .banner p {
   font-size: 35px;
@@ -81,7 +100,7 @@ body {
   border-radius: 50px;
   font-size: 18px;
   text-shadow: 2px 2px rgb(5, 5, 5);
-  font-family: 'Mountains of Christmas', cursive;
+  font-family: "Mountains of Christmas", cursive;
   outline: none;
   letter-spacing: 1px;
   cursor: pointer;
@@ -96,7 +115,7 @@ body {
   animation-fill-mode: backwards;
 }
 .btn-right {
-  background-color:rgba(226, 28, 28, 0.623) ;
+  background-color: rgba(226, 28, 28, 0.623);
   color: rgb(250, 250, 250);
   animation-name: animateBtn;
   animation-duration: 1s;
@@ -104,45 +123,43 @@ body {
   animation-fill-mode: backwards;
 }
 
-
 @keyframes moveLeft {
   0% {
-      transform: translateX(120px);
-      opacity: 0;
+    transform: translateX(120px);
+    opacity: 0;
   }
   100% {
-      transform: translateX(0);
-      opacity: 1;
+    transform: translateX(0);
+    opacity: 1;
   }
 }
 @keyframes moveRight {
   0% {
-      transform: translateX(-120px);
-      opacity: 0;
+    transform: translateX(-120px);
+    opacity: 0;
   }
   100% {
-      transform: translateX(0);
-      opacity: 1;
+    transform: translateX(0);
+    opacity: 1;
   }
 }
 @keyframes animateBtn {
   0% {
-      opacity: 0;
+    opacity: 0;
   }
   100% {
-      opacity: 1;
+    opacity: 1;
   }
 }
 
 /* styling for countdown timer */
 
 .countdown {
-  display:flex;
+  display: flex;
   margin-top: 50px;
   margin: auto;
   width: 36%;
   padding: 10px;
-  
 }
 .countdown div {
   position: relative;
@@ -156,10 +173,9 @@ body {
   font-size: 3em;
   font-weight: 500;
   border-radius: 5px;
- 
 }
 .countdown div:before {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -30px;
   left: 0;
@@ -171,23 +187,22 @@ body {
   line-height: 35px;
   font-weight: 300;
   border-radius: 5px;
-  
 }
 .countdown #day:before {
-  content: 'Days';
+  content: "Days";
 }
 .countdown #hour:before {
-  content: 'Hours';
+  content: "Hours";
 }
 .countdown #minute:before {
-  content: 'Minutes';
+  content: "Minutes";
 }
 .countdown #second:before {
-  content: 'Seconds';
+  content: "Seconds";
 }
 .timer {
   text-align: center;
-  font-family: 'Mountains of Christmas', cursive;
+  font-family: "Mountains of Christmas", cursive;
   font-size: 60px;
   color: white;
   text-shadow: 2px 2px rgb(5, 5, 5);
