@@ -5,13 +5,14 @@ module.exports = function (sequelize, DataTypes) {
     user_id: DataTypes.INTEGER,
   });
 
-  // List.associate = function (models) {
-  //   models.List.belongsToMany(models.Gift, {
-  //     foreignKey: {
-  //       allowNull: false,
-  //     },
-  //   });
-  // };
+  List.associate = function (models) {
+    models.list.belongsToMany(models.gift_table, {
+      // foreignKey: {
+      //   allowNull: false,
+      // },
+      through: "giftlist",
+    });
+  };
 
   return List;
 };
