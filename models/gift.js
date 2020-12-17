@@ -6,13 +6,13 @@ module.exports = function (sequelize, DataTypes) {
     gift_url: DataTypes.TEXT,
   });
 
-  Gift.associate = function (models) {
-    models.Gift.hasMany(models.List, {
-      foreignKey: {
-        allowNull: false,
-      },
-    });
-  };
+  // Gift.associate = function (models) {
+  //   models.Gift.hasMany(models.List, {
+  //     foreignKey: {
+  //       allowNull: false,
+  //     },
+  //   });
+  // };
 
   return Gift;
 };
