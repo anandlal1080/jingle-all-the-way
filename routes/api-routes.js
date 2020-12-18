@@ -89,38 +89,50 @@ module.exports = function (app) {
       .then(function () {
         res.status(200);
       });
+  });
 
-    // tester code to be deleted ===================================
-app.get("/api/etsy", async function (req, res) {
-  console.log("nofucking hello world")
-  res.status(200).end()
-  // await axios.get("https://openapi.etsy.com/v2/listings/active/?api_key=8dmo8ta4dscian61zluqduys" ).then (async function ({ data }) {
-    
-  //   const allResults = data.results;
-  //   for (let index = 0; index < allResults.length; index++) {
-  //     const resultItem = allResults[index];
-  //     let listingId = resultItem.listing_id; 
-  //     return listingId
-  //   }
-  //   console.log(listingId)
-  //   await axios.get("https://openapi.etsy.com/v2/listings/" +
+  // tester code to be deleted ===================================
+  app.get("/api/etsy", function (req, res) {
+    axios
+      .get(
+        "https://openapi.etsy.com/v2/listings/active/?api_key=8dmo8ta4dscian61zluqduys"
+      )
+      .then(async function ({ data }) {
+        const allResults = data.results;
+
+        async function getlistingId(allResults) {
+          for (let index = 0; index < allResults.length; index++) {
+            const resultItem = allResults[index];
+            let listingId = resultItem.listing_id;
+
+            await axios
+              .get(
+                "https://openapi.etsy.com/v2/listings/" +
+                  listingId +
+                  "/images?api_key=8dmo8ta4dscian61zluqduys"
+              )
+              .then(function ({ images }) {
+                // console.log(data);
+                return images;
+              });
+          }
+          return images;
+        }
+        let details = getlistingId(allResults);
+        details.then(function (results) {
+          console.log(results);
+          res.json(results);
+        });
+      });
+  });
+  // app.get("/api/etsyimage", function (req, res) {
+  //   const listingId = req.body
+  //   axios.get("https://openapi.etsy.com/v2/listings/" +
   //   listingId +
-  //   "/images?api_key=8dmo8ta4dscian61zluqduys").then(function ({ data }) {
+  //   "/images?api_key=" +
+  //   process.env.ETSY_KEY).then(function ({ data }) {
   //     res.json(data);
   //   });
-
-  //   res.json(data);
   // });
-});
-// app.get("/api/etsyimage", function (req, res) {
-//   const listingId = req.body
-//   axios.get("https://openapi.etsy.com/v2/listings/" +
-//   listingId +
-//   "/images?api_key=" +
-//   process.env.ETSY_KEY).then(function ({ data }) {
-//     res.json(data);
-//   });
-// });
-    // =============================================================
-  });
+  // =============================================================
 };
