@@ -31,7 +31,7 @@ $(document).ready(function () {
       console.log(data);
       userID = data.user.id;
     });
-    console.log(listName, userID, "this is still in the members.js")
+    // console.log(listName, userID, "this is still in the members.js")
     try {
       $.post("/api/user_lists", {
         name: listName,
