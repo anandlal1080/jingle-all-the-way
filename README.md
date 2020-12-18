@@ -37,3 +37,5 @@ The following technologies were used in the development:
 <li> JawsDB</li>
 <li> Passport</li>
 <li> bcrypt</li>
+<li>dotenv</li>
+<li>axios</li>
