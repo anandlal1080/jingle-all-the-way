@@ -1,8 +1,9 @@
 # Jingle All The Way
 
-This webpage allows the user to create a shopping list from items available on https://www.etsy.com.
+This webpage will show the user a countdown to days before Christmas. They can login or sign up.
+https://www.etsy.com.
 
-![Main Page](./images/Web7.png)
+![Main Page](./images/mainpage.png)
 
 # Usage
 
