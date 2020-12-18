@@ -98,7 +98,8 @@ module.exports = function (app) {
         "https://openapi.etsy.com/v2/listings/active/?api_key=8dmo8ta4dscian61zluqduys&includes=Images"
       )
       .then(function ({ data }) {
-        res.json(data.results)
+        // console.log(data.results)
+        res.json(data)
       });
   });
   // =============================================================
