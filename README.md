@@ -10,6 +10,7 @@ https://www.etsy.com.
 The user will have to either login or create an account to get access to the site.
 
 ![Overview](./images/login.png)
+![Overview](./images/signup.png)
 
 #
 
