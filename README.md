@@ -16,7 +16,7 @@ The user will have to either login or create an account to get access to the sit
 
 Once logged in, The user will be presented with their member specific view which would display their shooping lists and any feedbacks they have left.
 
-![Overview](./images/Web2.png)
+![Overview](./images/userpage.png)
 
 #
 
