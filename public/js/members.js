@@ -17,30 +17,31 @@ $(document).ready(function () {
     const newListData = {
       listName: listInput.val().trim(),
     };
-// Check to make sure our new object has a value
+    // Check to make sure our new object has a value
     if (!newListData.listName) return;
-// call our sendlist function passing in our new object
+    // call our sendlist function passing in our new object
     sendList(newListData);
-// clear the input value on the screen
-    listInput.val("")
-    
+    // clear the input value on the screen
+    listInput.val("");
   });
-  function sendList(listName){
-    let userID = "";
-    $.get("/api/user_data").then(function (data) {
-      console.log(data);
-      userID = data.user.id;
-    });
+  function sendList(listName) {
+    
+    $.get("/api/user_data").then( function (data) {
+      let userID = data.user.id;
+      // console.log(data.user);
+      try {
+        $.post("/api/user_lists", {
+          name: listName,
+          userId: userID,
+        });
+      } catch (error) {
+        console.log("this is in the memebers.js");
+        console.log(error);
+        res.status(500).end();
+      }
+    })
+    
     // console.log(listName, userID, "this is still in the members.js")
-    try {
-      $.post("/api/user_lists", {
-        name: listName,
-        user_id: userID
-      });
-    } catch (error) {
-      console.log("this is in the memebers.js")
-      console.log(error)
-      res.status(500).end()
-    }
+    
   }
 });

@@ -36,7 +36,7 @@ module.exports = function (app) {
 
   // Route for getting some data about our user to be used client side
   app.get("/api/user_data", async function (req, res) {
-    console.log(req.user);
+    // console.log(req.user);
     if (!req.user) {
       // The user is not logged in, send back an empty object
 
@@ -50,11 +50,12 @@ module.exports = function (app) {
           },
         });
         const listItems = await userInstance.getLists();
-        console.log(listItems);
+        // console.log(listItems);
         res.json({
           listItems,
           user: {
             first_name: userInstance.first_name,
+            id: userInstance.id,
           },
         });
       } catch (err) {
@@ -65,11 +66,24 @@ module.exports = function (app) {
 
   // Tester code to be finalized =====================================
   app.post("/api/user_lists", async function (req, res) {
-    console.log(req.body);
-    db.list
-      .create({
-        name: req.body.name,
-        user_id: req.body.userID,
+    console.log(req.body.name.listName);
+    console.log(req.body.userId);
+
+    db.List.create({
+      name: req.body.name.listName,
+    })
+      .then(async function () {
+        const newList = await db.List.findOne({
+          where: {
+            name: req.body.name.listName,
+          },
+        });
+        const userInstance = await db.User.findOne({
+          where: {
+            id: req.body.userId,
+          },
+        });
+        await userInstance.addList([newList]);
       })
       .then(function () {
         res.status(200);
