@@ -1,15 +1,16 @@
 const { JSDOM } = require("jsdom");
 const { window } = new JSDOM("");
 const $ = require("jquery")(window);
+require("dotenv").config()
 
 const cors = "https://cors-anywhere.herokuapp.com/";
-const key = "8dmo8ta4dscian61zluqduys";
+
 
 initialApiCall();
 
 function initialApiCall() {
   $.ajax({
-    url: cors + "https://openapi.etsy.com/v2/listings/active/?api_key=" + key,
+    url: cors + "https://openapi.etsy.com/v2/listings/active/?api_key=" + process.env.ETSY_KEY,
     type: "GET",
   }).then(function (data) {
     const allResults = data.results;
@@ -27,7 +28,7 @@ function secondApiCall(listingId) {
       "https://cors-anywhere.herokuapp.com/https://openapi.etsy.com/v2/listings/" +
       listingId +
       "/images?api_key=" +
-      key,
+      process.env.ETSY_KEY,
     type: "GET",
   }).then(function (data) {
     const image = data.results[0].url_170x135;
