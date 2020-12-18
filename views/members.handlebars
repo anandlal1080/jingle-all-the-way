@@ -1,5 +1,4 @@
 <main>
-    <h2>{{ message }}</h2>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Jingle All The Way</a>
@@ -26,7 +25,7 @@
         <div class="header-img">
 
         </div>
-        <h1>Welcome <span class="member-name"></span></h1>
+        <h1>Welcome {{ names }} <span class="member-name"></span></h1>
     </div>
 
     <!--left side of page container-->
@@ -41,11 +40,11 @@
                 <div class="mb-3">
                     <label for="exampleFormControlTextarea1" class="form-label">Wish List</label>
                     <ul class="list-group">
-                        <li class="list-group-item">Playstation 5</li>
-                        <li class="list-group-item">Xbox series X</li>
-                        <li class="list-group-item">Nintendo Switch</li>
-                        <li class="list-group-item">I Pad</li>
-                        <li class="list-group-item">One Million Dollars</li>
+                        <li class="list-group-item">List 1</li>
+                        <li class="list-group-item">List 2</li>
+                        <li class="list-group-item">List 3</li>
+                        <li class="list-group-item">List 4</li>
+                        <li class="list-group-item">List 5</li>
                     </ul>
 
                 </div>
@@ -56,73 +55,15 @@
 
             <div class="col-8">2 of 3
                 <div class="row">
-                    <div class="card shadow" style="width: 10rem">
-                        <div class="inner">
-                            <img src="images/playstation.jpeg" class="card-img-top" alt="..." />
-                            <div class="card-body text-center">
-                                <p class="card-text">Playstation 5</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card shadow" style="width: 10rem">
-                        <div class="inner">
-                            <img src="images/playstation.jpeg" class="card-img-top" alt="..." />
-                            <div class="card-body text-center">
-                                <p class="card-text">Playstation 5</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card shadow" style="width: 10rem">
-                        <div class="inner">
-                            <img src="images/playstation.jpeg" class="card-img-top" alt="..." />
-                            <div class="card-body text-center">
-                                <p class="card-text">Playstation 5</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card shadow" style="width: 10rem">
-                        <div class="inner">
-                            <img src="images/playstation.jpeg" class="card-img-top" alt="..." />
-                            <div class="card-body text-center">
-                                <p class="card-text">Playstation 5</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="card shadow" style="width: 10rem">
-                            <div class="inner">
-                                <img src="images/playstation.jpeg" class="card-img-top" alt="..." />
-                                <div class="card-body text-center">
-                                    <p class="card-text">Playstation 5</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card shadow" style="width: 10rem">
-                            <div class="inner">
-                                <img src="images/playstation.jpeg" class="card-img-top" alt="..." />
-                                <div class="card-body text-center">
-                                    <p class="card-text">Playstation 5</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card shadow" style="width: 10rem">
-                            <div class="inner">
-                                <img src="images/playstation.jpeg" class="card-img-top" alt="..." />
-                                <div class="card-body text-center">
-                                    <p class="card-text">Playstation 5</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card shadow" style="width: 10rem">
-                            <div class="inner">
-                                <img src="images/playstation.jpeg" class="card-img-top" alt="..." />
-                                <div class="card-body text-center">
-                                    <p class="card-text">Playstation 5</p>
-                                </div>
-                            </div>
-                        </div>
+                    {{#each gifts}}
 
-                    </div>
+
+                    {{> gifts/gift-block }}
+
+
+                    {{/each}}
+
+
 
                 </div>
             </div>
@@ -142,4 +83,5 @@
 
 
     <script type="text/javascript" src="js/featured.js" </script>
+    
 </main >
