@@ -9,7 +9,7 @@ https://www.etsy.com.
 
 The user will have to either login or create an account to get access to the site.
 
-![Overview](./images/Web1.png)
+![Overview](./images/login.png)
 
 #
 
