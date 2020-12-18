@@ -42,6 +42,21 @@ var pass = bcrypt.hashSync("12345", bcrypt.genSaltSync(10), null);
   ];
   await db.Gift.bulkCreate(gifts);
 
+  const xboxInstance = await db.Gift.findOne({
+    where: {
+      name: "Xbox",
+    },
+  });
+  const ps5Instance = await db.Gift.findOne({
+    where: {
+      name: "PS5",
+    },
+  });
+  const switchInstance = await db.Gift.findOne({
+    where: {
+      name: "Switch",
+    },
+  });
   const userInstance = await db.User.findOne({
     where: {
       email: "john@gmail.com",
@@ -60,6 +75,9 @@ var pass = bcrypt.hashSync("12345", bcrypt.genSaltSync(10), null);
   await userInstance.addLists([redList, greenList]);
   //   await redList.setUser(userInstance);
   //   await greenList.setUser(userInstance);
+
+  await redList.addGifts([xboxInstance, ps5Instance]);
+  await greenList.addGifts([ps5Instance, switchInstance]);
 
   console.log("Data seeded successfully!");
   process.exit(0);

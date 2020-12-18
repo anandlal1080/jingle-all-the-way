@@ -14,12 +14,8 @@
   "dependencies": {
     "bcryptjs": "2.4.3",
     "express": "^4.17.1",
-<<<<<<< HEAD
-    "express-session": "^1.17.1",
-=======
     "express-handlebars": "^5.2.0",
     "express-session": "^1.16.1",
->>>>>>> 9e9749dfdf92c87fb49738988151ce9c6e03e365
     "jquery": "^3.5.1",
     "jsdom": "^16.4.0",
     "mysql2": "^1.6.5",
