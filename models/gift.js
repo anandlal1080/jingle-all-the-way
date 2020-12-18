@@ -1,13 +1,13 @@
 module.exports = function (sequelize, DataTypes) {
-  const Gift = sequelize.define("gift_table", {
+  var Gift = sequelize.define("Gift", {
     // Giving the Gift model a name of type STRING
-    list_id: DataTypes.INTEGER,
-    gift_name: DataTypes.STRING,
-    gift_url: DataTypes.TEXT,
+
+    name: DataTypes.STRING,
+    url: DataTypes.TEXT,
   });
 
   Gift.associate = function (models) {
-    models.gift_table.belongsToMany(models.list, {
+    models.Gift.belongsToMany(models.List, {
       through: "giftlist",
     });
   };

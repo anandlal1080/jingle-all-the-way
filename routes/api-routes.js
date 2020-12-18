@@ -14,13 +14,12 @@ module.exports = function (app) {
   // how we configured our Sequelize User Model. If the user is created successfully, proceed to log the user in,
   // otherwise send back an error
   app.post("/api/signup", function (req, res) {
-    db.user
-      .create({
-        first_name: req.body.first,
-        last_name: req.body.last,
-        email: req.body.email,
-        password: req.body.password,
-      })
+    db.User.create({
+      first_name: req.body.first,
+      last_name: req.body.last,
+      email: req.body.email,
+      password: req.body.password,
+    })
       .then(function () {
         res.redirect(307, "/api/login");
       })
@@ -37,26 +36,27 @@ module.exports = function (app) {
 
   // Route for getting some data about our user to be used client side
   app.get("/api/user_data", async function (req, res) {
+    console.log(req.user);
     if (!req.user) {
       // The user is not logged in, send back an empty object
 
-      res.json({});
+      return res.json({});
     } else {
       // Otherwise send back the user's email and id
       // Sending back a password, even a hashed password, isn't a good idea
       try {
         // return the result to the user with res.json
-        const list = await db.list.findAll({
+        const userInstance = await db.User.findOne({
           where: {
-            user_id: req.user.id,
+            Id: req.user.id,
           },
         });
-        console.log(list);
+        const listItems = await userInstance.getLists();
+        console.log(listItems);
         res.json({
-          list,
+          listItems,
           user: {
-            first_name: req.user.first_name,
-            last_name: req.user.last_name,
+            first_name: userInstance.first_name,
           },
         });
       } catch (err) {
