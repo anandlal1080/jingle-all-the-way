@@ -29,10 +29,18 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
-                <h2>Welcome <span class="member-name">{{ userInstance.first_namee }}</span></h2>
+                <h2>Welcome <span class="member-name">{{ message }}</span></h2>
             </div>
         </div>
     </div>
+
+   <form class="create-new-list">
+                    <div class="form-group">
+                        <label for="name">name</label>
+                        <input type="text" class="form-control" id="list-name" placeholder="name" />
+                    </div>
+                    <button type="submit" class="btn btn-secondary">Add List</button>
+                </form>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="js/members.js"></script>

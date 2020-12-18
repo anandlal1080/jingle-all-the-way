@@ -36,14 +36,12 @@ module.exports = function (app) {
 
   // Route for getting some data about our user to be used client side
   app.get("/api/user_data", async function (req, res) {
-    console.log(req.user);
+    // console.log(req.user);
     if (!req.user) {
       // The user is not logged in, send back an empty object
 
       return res.json({});
     } else {
-      // Otherwise send back the user's email and id
-      // Sending back a password, even a hashed password, isn't a good idea
       try {
         // return the result to the user with res.json
         const userInstance = await db.User.findOne({
@@ -52,16 +50,46 @@ module.exports = function (app) {
           },
         });
         const listItems = await userInstance.getLists();
-        console.log(listItems);
+        // console.log(listItems);
         res.json({
           listItems,
           user: {
             first_name: userInstance.first_name,
+            id: userInstance.id,
           },
         });
       } catch (err) {
         res.status(500).end();
       }
     }
+  });
+
+  // Tester code to be finalized =====================================
+  app.post("/api/user_lists", async function (req, res) {
+    console.log(req.body.name.listName);
+    console.log(req.body.userId);
+
+    db.List.create({
+      name: req.body.name.listName,
+    })
+      .then(async function () {
+        const newList = await db.List.findOne({
+          where: {
+            name: req.body.name.listName,
+          },
+        });
+        const userInstance = await db.User.findOne({
+          where: {
+            id: req.body.userId,
+          },
+        });
+        await userInstance.addList([newList]);
+      })
+      .then(function () {
+        res.status(200);
+      });
+    // tester code to be deleted ===================================
+
+    // =============================================================
   });
 };
