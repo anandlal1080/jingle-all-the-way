@@ -42,8 +42,7 @@ module.exports = function (app) {
 
       res.json({});
     } else {
-      // Otherwise send back the user's email and id
-      // Sending back a password, even a hashed password, isn't a good idea
+     
       try {
         // return the result to the user with res.json
         const list = await db.list.findAll({
@@ -55,6 +54,7 @@ module.exports = function (app) {
         res.json({
           list,
           user: {
+            id: req.user.id,
             first_name: req.user.first_name,
             last_name: req.user.last_name,
           },
@@ -63,5 +63,19 @@ module.exports = function (app) {
         res.status(500).end();
       }
     }
+  });
+
+  // Tester code to be finalized =====================================
+  app.post("/api/user_lists", async function (req, res) {
+    
+    db.list.create({
+      name: req.body.name,
+      user_id: req.body.userID,
+    }).then(function(){
+      res.status(200);
+    });
+      // tester code to be deleted ===================================
+      
+      // =============================================================
   });
 };
