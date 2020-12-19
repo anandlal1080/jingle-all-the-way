@@ -23,78 +23,78 @@
             </div>
         </div>
     </nav>
-    <div class="header">
-        <div class="header-img">
+</main>
 
-        </div>
-        <h1>Welcome {{ names }} <span class="member-name"></span></h1>
+<div class="header">
+    <div class="header-img">
+
     </div>
+    <h1>Welcome {{ names }} <span class="member-name"></span></h1>
+</div>
 
-    <!--left side of page container-->
-    <div class="container">
-        <div class="row">
-            <div class="col-3">1 of 3
+<!--left side of page container-->
+<div class="container">
+    <div class="row">
+        <div class="col-3">1 of 3
 
-                {{!-- tester code --}}
-                <form class="create-new-list">
-                    <div class="form-group">
-                        <label for="list-name">Name</label>
-                        <input type="text" class="form-control" id="list-name" placeholder="List Name">
-                    </div>
-                    <button type="button" class="btn btn-default" id="list-btn">New List</button>
-                </form>
-                {{!-- tester code --}}
-
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="ADD LIST" aria-label="Recipient's username"
-                        aria-describedby="button-addon2">
-                    <button class="btn btn-outline-secondary" type="submit" id="button-addon2">New List</button>
+            {{!-- tester code --}}
+            <form class="create-new-list">
+                <div class="form-group">
+                    <label for="list-name">Name</label>
+                    <input type="text" class="form-control" id="list-name" placeholder="List Name">
                 </div>
-                <div class="mb-3">
-                    <label for="exampleFormControlTextarea1" class="form-label">Wish List</label>
-                    <ul class="list-group">
-                        <li class="list-group-item">List 1</li>
-                        <li class="list-group-item">List 2</li>
-                        <li class="list-group-item">List 3</li>
-                        <li class="list-group-item">List 4</li>
-                        <li class="list-group-item">List 5</li>
-                    </ul>
+                <button type="button" class="btn btn-default" id="list-btn">New List</button>
+            </form>
+            {{!-- tester code --}}
 
-                </div>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="ADD LIST" aria-label="Recipient's username"
+                    aria-describedby="button-addon2">
+                <button class="btn btn-outline-secondary" type="submit" id="button-addon2">New List</button>
             </div>
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">Wish List</label>
+                <ul class="list-group">
+                    <li class="list-group-item">List 1</li>
+                    <li class="list-group-item">List 2</li>
+                    <li class="list-group-item">List 3</li>
+                    <li class="list-group-item">List 4</li>
+                    <li class="list-group-item">List 5</li>
+                </ul>
 
-
-
-
-            <div class="col-8">2 of 3
-                <div class="row">
-                    {{#each gifts}}
-
-
-                    {{> gifts/gift-block }}
-
-
-                    {{/each}}
-
-
-
-                </div>
-            </div>
-
-            <div class="col-1">3 of 3
-                <div class="row justify-content-center">
-                    <div class="text">
-                        <div class="outer">
-                            <img src="images/Screen Shot 2020-12-16 at 6.27.33 PM.png" class="rounded" alt="..." />
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
+
+
+
+
+        <div class="col-8">2 of 3
+            <div class="row">
+                {{#each gifts}}
+
+
+                {{> gifts/gift-block }}
+
+
+                {{/each}}
+
+
+
+            </div>
+        </div>
+
+        <div class="col-1">3 of 3
+            <div class="row justify-content-center">
+                <div class="text">
+                    <div class="outer">
+                        <img src="images/Screen Shot 2020-12-16 at 6.27.33 PM.png" class="rounded" alt="..." />
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
 
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript" src="js/members.js" </script>
-
-</main >
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="js/members.js" </script>
