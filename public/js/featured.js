@@ -67,14 +67,11 @@ $(".list-group-item").on("click", function (event) {
   }).then(function (data) {});
 });
 
-// weird test ==============================
-testing();
-
-function testing() {
-  $.post("/members", {
-    name: "testing",
-  }).then(function (data) {
-    console.log(data);
-  });
-}
-// =========================================
+$(".fas.fa-gift").on("click", function (event) {
+  event.stopPropagation();
+  let etsyId = $(this).attr("data");
+  // $.post("/api/list_items", {
+  //   list: listId,
+  // }).then(function (data) {});
+  console.log(etsyId);
+});
