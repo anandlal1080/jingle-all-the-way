@@ -38,7 +38,12 @@ module.exports = function (app) {
   app.get("/members", isAuthenticated, async function (req, res) {
     // res.sendFile(path.join(__dirname, "../public/members.html"));
     var data = await db.Gift.findAll({ raw: true });
-    var hbsObject = { gifts: data, names: req.user.first_name };
+    var list_data = await db.List.findAll({ raw: true });
+    var hbsObject = {
+      gifts: data,
+      names: req.user.first_name,
+      lists: list_data,
+    };
     res.render("members", hbsObject);
   });
 };

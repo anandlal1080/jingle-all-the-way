@@ -45,11 +45,14 @@
             <div class="mb-3">
                 <label for="exampleFormControlTextarea1" class="form-label">Wish List</label>
                 <ul class="list-group">
-                    <li class="list-group-item">List 1</li>
-                    <li class="list-group-item">List 2</li>
-                    <li class="list-group-item">List 3</li>
-                    <li class="list-group-item">List 4</li>
-                    <li class="list-group-item">List 5</li>
+                    {{#each lists}}
+
+
+                    {{> lists/list-block }}
+
+
+                    {{/each}}
+
                 </ul>
 
             </div>
@@ -76,7 +79,13 @@
             <div class="row justify-content-center">
                 <div class="text">
                     <div class="outer">
-                        <img src="images/Screen Shot 2020-12-16 at 6.27.33 PM.png" class="rounded" alt="..." />
+                        {{#each gifts}}
+
+
+                        {{> gifts/gift-block }}
+
+
+                        {{/each}}
                     </div>
                 </div>
             </div>
@@ -86,4 +95,8 @@
 
 
 <script src="https://code.jquery.com/jquery.js"></script>
+<<<<<<< HEAD
 <script type="text/javascript" src="/js/featured.js"> </script>
+=======
+<script type="text/javascript" src="/js/featured.js"> </script>
+>>>>>>> 7784e776538c47ef4930bae1b8408349f09c363c
