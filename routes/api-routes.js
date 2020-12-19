@@ -92,7 +92,7 @@ module.exports = function (app) {
   });
 
   // tester code to be deleted ===================================
-  app.get("/api/etsy", function (req, res) {
+  app.get("/api/etsy", async function (req, res) {
     axios
       .get(
         "https://openapi.etsy.com/v2/listings/active/?api_key=8dmo8ta4dscian61zluqduys"
@@ -104,24 +104,25 @@ module.exports = function (app) {
           for (let index = 0; index < allResults.length; index++) {
             const resultItem = allResults[index];
             let listingId = resultItem.listing_id;
-
+            // console.log(listingId);
             await axios
               .get(
                 "https://openapi.etsy.com/v2/listings/" +
                   listingId +
                   "/images?api_key=8dmo8ta4dscian61zluqduys"
               )
-              .then(function ({ images }) {
-                // console.log(data);
+              .then(function ({ data }) {
+                // console.log(data.results);
+                let images = data.results;
                 return images;
               });
           }
-          return images;
         }
         let details = getlistingId(allResults);
-        details.then(function (results) {
+        console.log(details);
+        details.then(function ({ results }) {
           console.log(results);
-          res.json(results);
+          res.json(images);
         });
       });
   });

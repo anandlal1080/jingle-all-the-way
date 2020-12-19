@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(function () {
   // This file just does a GET request to figure out which user is logged in
   // and updates the HTML on the page
   // $.get("/api/user_data").then(function (data) {
@@ -7,12 +7,13 @@ $(document).ready(function () {
   // });
 
   // Getting references to our form and inputs
-  const newListForm = $("form.create-new-list");
-  const listInput = $("input#list-name");
+  const newListForm = $(".create-form");
+  const listInput = $(".form-control");
 
   // When the form is submitted, we send the data to our api/db
-  newListForm.on("submit", function (event) {
+  $(".create-form").on("submit", function (event) {
     event.preventDefault();
+    console.log("click me");
     // get our user data from the form and store it in a new object
     const newListData = {
       listName: listInput.val().trim(),
@@ -25,23 +26,24 @@ $(document).ready(function () {
     listInput.val("");
   });
   function sendList(listName) {
-    
-    $.get("/api/user_data").then( function (data) {
+    $.get("/api/user_data").then(function (data) {
       let userID = data.user.id;
       // console.log(data.user);
       try {
         $.post("/api/user_lists", {
           name: listName,
           userId: userID,
+        }).then(function () {
+          // Reload the page to get the updated list
+          location.reload();
         });
       } catch (error) {
         console.log("this is in the memebers.js");
         console.log(error);
         res.status(500).end();
       }
-    })
-    
+    });
+
     // console.log(listName, userID, "this is still in the members.js")
-    
   }
 });
