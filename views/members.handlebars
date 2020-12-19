@@ -11,13 +11,13 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="public/index.html">Home</a>
+                        <a class="nav-link active" aria-current="page" href="index">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="public/featured.html">Wish List</a>
+                        <a class="nav-link" href="index" id="logout">Log out</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="public/login.html">Log In</a>
+                        <a class="nav-link" href="login">Log In</a>
                     </li>
                 </ul>
             </div>
@@ -34,6 +34,17 @@
     <div class="container">
         <div class="row">
             <div class="col-3">1 of 3
+
+                {{!-- tester code --}}
+                <form class="create-new-list">
+                    <div class="form-group">
+                        <label for="list-name">Name</label>
+                        <input type="text" class="form-control" id="list-name" placeholder="List Name">
+                    </div>
+                    <button type="button" class="btn btn-default" id="list-btn">New List</button>
+                </form>
+                {{!-- tester code --}}
+
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" placeholder="ADD LIST" aria-label="Recipient's username"
                         aria-describedby="button-addon2">
@@ -83,7 +94,7 @@
     </div>
 
 
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="js/members.js" </script>
 
 </main >
