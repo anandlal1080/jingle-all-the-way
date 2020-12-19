@@ -21,7 +21,13 @@ module.exports = function (app) {
     // If the user already has an account send them to the members page
     if (req.user) {
       var data = await db.Gift.findAll({ raw: true });
-      var hbsObject = { gifts: data, names: req.user.first_name };
+      var list_data = await db.List.findAll({ raw: true });
+
+      var hbsObject = {
+        gifts: data,
+        names: req.user.first_name,
+        lists: list_data,
+      };
       res.render("members", hbsObject);
     }
     // res.sendFile(path.join(__dirname, "../public/login.html"));
@@ -39,6 +45,7 @@ module.exports = function (app) {
     // res.sendFile(path.join(__dirname, "../public/members.html"));
     var data = await db.Gift.findAll({ raw: true });
     var list_data = await db.List.findAll({ raw: true });
+
     var hbsObject = {
       gifts: data,
       names: req.user.first_name,
