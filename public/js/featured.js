@@ -66,3 +66,12 @@ $(".list-group-item").on("click", function (event) {
     list: listId,
   }).then(function (data) {});
 });
+
+$(".fas.fa-gift").on("click", function (event) {
+  event.stopPropagation();
+  let etsyId = $(this).attr("data");
+  // $.post("/api/list_items", {
+  //   list: listId,
+  // }).then(function (data) {});
+  console.log(etsyId);
+});
