@@ -1,20 +1,22 @@
 # Jingle All The Way
 
-This webpage allows the user to create a shopping list from items available on https://www.etsy.com.
+This webpage will show the user a countdown to days before Christmas. They can login or sign up.
+https://www.etsy.com.
 
-![Main Page](./images/Web7.png)
+![Main Page](./images/mainpage.png)
 
 # Usage
 
 The user will have to either login or create an account to get access to the site.
 
-![Overview](./images/Web1.png)
+![Overview](./images/login.png)
+![Overview](./images/signup.png)
 
 #
 
 Once logged in, The user will be presented with their member specific view which would display their shooping lists and any feedbacks they have left.
 
-![Overview](./images/Web2.png)
+![Overview](./images/userpage.png)
 
 #
 
@@ -37,3 +39,5 @@ The following technologies were used in the development:
 <li> JawsDB</li>
 <li> Passport</li>
 <li> bcrypt</li>
+<li>dotenv</li>
+<li>axios</li>
