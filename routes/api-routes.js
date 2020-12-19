@@ -87,7 +87,7 @@ module.exports = function (app) {
         await userInstance.addList([newList]);
       })
       .then(function () {
-        res.status(200);
+        res.render("members");
       });
   });
 
