@@ -92,7 +92,7 @@ module.exports = function (app) {
   });
 
   // tester code to be deleted ===================================
-  app.get("/api/etsy", function (req, res) {
+  app.get("/api/etsy", async function (req, res) {
     axios
       .get(
         "https://openapi.etsy.com/v2/listings/active/?api_key=8dmo8ta4dscian61zluqduys"
@@ -100,56 +100,31 @@ module.exports = function (app) {
       .then(async function ({ data }) {
         const allResults = data.results;
 
-<<<<<<< HEAD
-    // tester code to be deleted ===================================
-    // =============================================================
-  });
-  app.get("/api/etsy", async function (req, res) {
-    console.log("nofucking hello world");
-    res.status(200).end();
-    // await axios.get("https://openapi.etsy.com/v2/listings/active/?api_key=8dmo8ta4dscian61zluqduys" ).then (async function ({ data }) {
-
-    //   const allResults = data.results;
-    //   for (let index = 0; index < allResults.length; index++) {
-    //     const resultItem = allResults[index];
-    //     let listingId = resultItem.listing_id;
-    //     return listingId
-    //   }
-    //   console.log(listingId)
-    //   await axios.get("https://openapi.etsy.com/v2/listings/" +
-    //   listingId +
-    //   "/images?api_key=8dmo8ta4dscian61zluqduys").then(function ({ data }) {
-    //     res.json(data);
-    //   });
-
-    //   res.json(data);
-    // });
-=======
         async function getlistingId(allResults) {
           for (let index = 0; index < allResults.length; index++) {
             const resultItem = allResults[index];
             let listingId = resultItem.listing_id;
-
+            // console.log(listingId);
             await axios
               .get(
                 "https://openapi.etsy.com/v2/listings/" +
                   listingId +
                   "/images?api_key=8dmo8ta4dscian61zluqduys"
               )
-              .then(function ({ images }) {
-                // console.log(data);
+              .then(function ({ data }) {
+                // console.log(data.results);
+                let images = data.results;
                 return images;
               });
           }
-          return images;
         }
         let details = getlistingId(allResults);
-        details.then(function (results) {
+        console.log(details);
+        details.then(function ({ results }) {
           console.log(results);
           res.json(results);
         });
       });
->>>>>>> b8d2ff8e792d42404be7cbd66240fe8dffbc1b36
   });
   // app.get("/api/etsyimage", function (req, res) {
   //   const listingId = req.body
@@ -160,8 +135,5 @@ module.exports = function (app) {
   //     res.json(data);
   //   });
   // });
-<<<<<<< HEAD
-=======
   // =============================================================
->>>>>>> b8d2ff8e792d42404be7cbd66240fe8dffbc1b36
 };
