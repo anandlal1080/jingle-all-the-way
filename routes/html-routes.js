@@ -23,10 +23,13 @@ module.exports = function (app) {
       var data = await db.Gift.findAll({ raw: true });
       var list_data = await db.List.findAll({ raw: true });
 
+      var etsy_data = await db.Etsy.findAll({ raw: true });
+
       var hbsObject = {
         gifts: data,
         names: req.user.first_name,
         lists: list_data,
+        etsys: etsy_data,
       };
       res.render("members", hbsObject);
     }
@@ -46,13 +49,16 @@ module.exports = function (app) {
     var data = await db.Gift.findAll({ raw: true });
     var list_data = await db.List.findAll({ raw: true });
 
-    // var etsy_data = await axios.get("/api/etsy");
+    var etsy_data = await db.Etsy.findAll({
+      raw: true,
+      order: [["id", "DESC"]],
+    });
 
     var hbsObject = {
       gifts: data,
       names: req.user.first_name,
       lists: list_data,
-      // etsys: etsy_data,
+      etsys: etsy_data,
     };
     res.render("members", hbsObject);
   });
