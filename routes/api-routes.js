@@ -122,7 +122,7 @@ module.exports = function (app) {
         console.log(details);
         details.then(function ({ results }) {
           console.log(results);
-          res.json(results);
+          res.json(images);
         });
       });
   });
