@@ -54,12 +54,12 @@ $(logoutAncher).on("click", function () {
     // console.log(listName, userID, "this is still in the members.js")
   }
   // Tester code =======================================================
-  // getEtsyListings();
+  getEtsyListings();
 
-  // function getEtsyListings() {
-  //   $.get("/api/etsy").then(function (data) {
-  //     console.log(data);
-  //   });
-  // }
+  function getEtsyListings() {
+    $.get("/api/etsy").then(function (data) {
+      console.log(data);
+    });
+  }
   // ===================================================================
 });
