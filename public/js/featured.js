@@ -52,4 +52,17 @@ renderEtsy();
 
 function renderEtsy() {
   $.get("/api/etsy");
+  let ticker = 0;
+  if ((ticker = 0)) {
+    location.reload();
+    ticker++;
+  }
 }
+
+$(".list-group-item").on("click", function (event) {
+  event.stopPropagation();
+  let listId = $(this).attr("data");
+  $.post("/api/list_items", {
+    list: listId,
+  }).then(function (data) {});
+});
