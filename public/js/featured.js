@@ -66,3 +66,15 @@ $(".list-group-item").on("click", function (event) {
     list: listId,
   }).then(function (data) {});
 });
+
+// weird test ==============================
+testing();
+
+function testing() {
+  $.post("/members", {
+    name: "testing",
+  }).then(function (data) {
+    console.log(data);
+  });
+}
+// =========================================

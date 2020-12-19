@@ -99,7 +99,6 @@ module.exports = function (app) {
       )
       .then(async function ({ data }) {
         let etsy = [];
-        console.log(data.results.length);
         for (let i = 0; i < data.results.length; i++) {
           item = {
             title: data.results[i].title,
@@ -114,12 +113,6 @@ module.exports = function (app) {
   });
 
   app.post("/api/list_items", async function (req, res) {
-    // let list = await db.List.findOne({
-    //   where: {
-    //     id: req.body.list,
-    //   },
-    //   raw: true,
-    // });
     let giftsId = await db.List.findAll({
       where: {
         id: req.body.list,
@@ -130,7 +123,6 @@ module.exports = function (app) {
     });
 
     console.log(giftsId);
-    // console.log(gifts);
     res.json(giftsId);
   });
   // =============================================================
