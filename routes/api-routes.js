@@ -93,22 +93,21 @@ module.exports = function (app) {
 
   // tester code to be deleted ===================================
   app.get("/api/etsy", async function (req, res) {
-    axios
+    await axios
       .get(
         `https://openapi.etsy.com/v2/listings/active/?api_key=${process.env.ETSY_KEY}&includes=Images`
       )
-      .then(function ({data}) {
+      .then(async function ({ data }) {
         let etsy = [];
-        for (let i = 0; i < data.length; i++) {
+        console.log(data.results.length);
+        for (let i = 0; i < data.results.length; i++) {
           item = {
-            title: data[i].title,
-            image: data[i].Images[0].url_170x135,
-            desc: data[i].description,
+            title: data.results[i].title,
+            image: data.results[i].Images[0].url_170x135,
           };
+          await db.Etsy.create(item);
           etsy.push(item);
-          
         }
-        // console.log(etsy);
 
         res.json(etsy);
       });
