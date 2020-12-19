@@ -95,45 +95,12 @@ module.exports = function (app) {
   app.get("/api/etsy", async function (req, res) {
     axios
       .get(
-        "https://openapi.etsy.com/v2/listings/active/?api_key=8dmo8ta4dscian61zluqduys"
+        `https://openapi.etsy.com/v2/listings/active/?api_key=${process.env.ETSY_KEY}&includes=Images`
       )
       .then(async function ({ data }) {
         const allResults = data.results;
-
-        async function getlistingId(allResults) {
-          for (let index = 0; index < allResults.length; index++) {
-            const resultItem = allResults[index];
-            let listingId = resultItem.listing_id;
-            // console.log(listingId);
-            await axios
-              .get(
-                "https://openapi.etsy.com/v2/listings/" +
-                  listingId +
-                  "/images?api_key=8dmo8ta4dscian61zluqduys"
-              )
-              .then(function ({ data }) {
-                // console.log(data.results);
-                let images = data.results;
-                return images;
-              });
-          }
-        }
-        let details = getlistingId(allResults);
-        console.log(details);
-        details.then(function ({ results }) {
-          console.log(results);
-          res.json(images);
-        });
+        res.json(allResults);
       });
   });
-  // app.get("/api/etsyimage", function (req, res) {
-  //   const listingId = req.body
-  //   axios.get("https://openapi.etsy.com/v2/listings/" +
-  //   listingId +
-  //   "/images?api_key=" +
-  //   process.env.ETSY_KEY).then(function ({ data }) {
-  //     res.json(data);
-  //   });
-  // });
   // =============================================================
 };

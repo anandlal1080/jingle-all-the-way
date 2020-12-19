@@ -10,13 +10,11 @@ initialApiCall();
 
 function initialApiCall() {
   $.ajax({
-    
     url: "/api/etsy",
     type: "GET",
   }).then(function (data) {
     
-    const image = data.results[0].url_170x135;
-    console.log(image);
+    console.log(data);
     
   });
 }
