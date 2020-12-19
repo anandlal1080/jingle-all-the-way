@@ -47,3 +47,20 @@ $(function () {
     // console.log(listName, userID, "this is still in the members.js")
   }
 });
+
+renderEtsy();
+
+function renderEtsy() {
+  $.get("/api/etsy").then(function (data) {
+    let etsy = [];
+    for (let i = 0; i < data.length; i++) {
+      item = {
+        title: data[i].title,
+        image: data[i].Images[0].url_170x135,
+        desc: data[i].description,
+      }
+      etsy.push(item);
+    }
+    console.log(etsy)
+  });
+}
