@@ -112,5 +112,26 @@ module.exports = function (app) {
         res.json(etsy);
       });
   });
+
+  app.post("/api/list_items", async function (req, res) {
+    // let list = await db.List.findOne({
+    //   where: {
+    //     id: req.body.list,
+    //   },
+    //   raw: true,
+    // });
+    let giftsId = await db.List.findAll({
+      where: {
+        id: req.body.list,
+      },
+      include: [{model:db.Gift}],
+      through: "giftlist",
+      raw: true,
+    });
+
+    console.log(giftsId);
+    // console.log(gifts);
+    res.json(giftsId);
+  });
   // =============================================================
 };
