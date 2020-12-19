@@ -1,7 +1,7 @@
 // Requiring path to so we can use relative routes to our HTML files
 const path = require("path");
 const db = require("../models");
-
+const axios = require("axios");
 // Requiring our custom middleware for checking if a user is logged in
 const isAuthenticated = require("../config/middleware/isAuthenticated");
 
@@ -46,10 +46,13 @@ module.exports = function (app) {
     var data = await db.Gift.findAll({ raw: true });
     var list_data = await db.List.findAll({ raw: true });
 
+    // var etsy_data = await axios.get("/api/etsy");
+
     var hbsObject = {
       gifts: data,
       names: req.user.first_name,
       lists: list_data,
+      // etsys: etsy_data,
     };
     res.render("members", hbsObject);
   });

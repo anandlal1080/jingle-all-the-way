@@ -97,9 +97,20 @@ module.exports = function (app) {
       .get(
         `https://openapi.etsy.com/v2/listings/active/?api_key=${process.env.ETSY_KEY}&includes=Images`
       )
-      .then(async function ({ data }) {
-        const allResults = data.results;
-        res.json(allResults);
+      .then(function ({data}) {
+        let etsy = [];
+        for (let i = 0; i < data.length; i++) {
+          item = {
+            title: data[i].title,
+            image: data[i].Images[0].url_170x135,
+            desc: data[i].description,
+          };
+          etsy.push(item);
+          
+        }
+        // console.log(etsy);
+
+        res.json(etsy);
       });
   });
   // =============================================================
