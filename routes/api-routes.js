@@ -92,14 +92,14 @@ module.exports = function (app) {
   });
 
   // tester code to be deleted ===================================
-  app.get("/api/etsy", function (req, res) {
+  app.get("/api/etsy", async function (req, res) {
     axios
       .get(
-        "https://openapi.etsy.com/v2/listings/active/?api_key=8dmo8ta4dscian61zluqduys&includes=Images"
+        `https://openapi.etsy.com/v2/listings/active/?api_key=${process.env.ETSY_KEY}&includes=Images`
       )
-      .then(function ({ data }) {
-        // console.log(data.results)
-        res.json(data)
+      .then(async function ({ data }) {
+        const allResults = data.results;
+        res.json(allResults);
       });
   });
   // =============================================================
