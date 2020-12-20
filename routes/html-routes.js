@@ -85,6 +85,7 @@ module.exports = function (app) {
       lists: list_data,
       etsys: etsy_data,
     };
+
     res.render("members", hbsObject);
   });
 };
