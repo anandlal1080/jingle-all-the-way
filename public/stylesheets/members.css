@@ -1,5 +1,13 @@
  body {
-    background-image: url(../images/member_background.jpeg)
+    background-attachment: fixed;
+    background-color: #e44646;
+    background-image: linear-gradient(to bottom, rgba(228, 225, 37, 0) 70%,rgb(233, 29, 29)100%),
+    url(../images/ice.jpeg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100vh;
+    
 } 
 .header {
     /* background-color: cadetblue; */
@@ -10,7 +18,8 @@
     text-shadow: 2px 2px rgb(5, 5, 5);
     font-family: 'Mountains of Christmas', cursive;
     outline: none;
-    background-image: url(../images/christmas_lights.jpeg);
+    background-image: linear-gradient(to top, rgba(228, 225, 37, 0) 50%,rgb(0, 0, 0)100%),
+    url(../images/christmas_lights.jpeg);
     background-size: cover;
     background-repeat: no-repeat;
     width: 100%;
@@ -39,12 +48,24 @@ h1{
 #button-addon2 {
     color: black;
     background: gray;
+    
 }
 #more-items {
     background: grey;
     color: white;
+    
 }
 .form-label {
-    color: rgb(58, 131, 10);
+    color: crimson;
     font-size: 3rem;
+    font-family: 'Mountains of Christmas', cursive;
+}
+
+.list-group {
+    box-shadow: 8px 8px 5px 2px #888888;
+    font-size: 1.0rem;
+}
+
+.test {
+    border: 10px red;
 }
