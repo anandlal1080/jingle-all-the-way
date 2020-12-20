@@ -48,30 +48,38 @@ $(function () {
   }
 });
 
-renderEtsy();
-
+$("#more-items").on("click", function (event) {
+  event.stopPropagation();
+  renderEtsy();
+});
 function renderEtsy() {
   $.get("/api/etsy");
-  let ticker = 0;
-  if ((ticker = 0)) {
-    location.reload();
-    ticker++;
-  }
+  location.reload();
 }
+
+localStorage.clear();
 
 $(".list-group-item").on("click", function (event) {
   event.stopPropagation();
   let listId = $(this).attr("data");
-  $.post("/api/list_items", {
-    list: listId,
-  }).then(function (data) {});
+  localStorage.setItem("listId", listId);
+});
+
+$(".fas.fa-trash-alt").on("click", function (event) {
+  event.stopPropagation();
+  let trashId = $(this).attr("data");
+  console.log(trashId);
 });
 
 $(".fas.fa-gift").on("click", function (event) {
   event.stopPropagation();
-  let etsyId = $(this).attr("data");
-  // $.post("/api/list_items", {
-  //   list: listId,
-  // }).then(function (data) {});
-  console.log(etsyId);
+  if (localStorage.getItem("listId") != null) {
+    let etsyId = $(this).attr("data");
+    const listId = localStorage.getItem("listId");
+    console.log(listId, etsyId);
+    $.post("/api/etsy_items", {
+      etsy: etsyId,
+      list: listId,
+    });
+  }
 });

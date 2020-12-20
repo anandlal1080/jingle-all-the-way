@@ -9,7 +9,12 @@ module.exports = function (app) {
   app.get("/", async function (req, res) {
     // If the user already has an account send them to the members page
     if (req.user) {
-      var data = await db.Gift.findAll({ raw: true });
+      var data = await db.Gift.findAll({
+        where: {
+          id: req.user.id,
+        },
+        raw: true,
+      });
       var hbsObject = { gifts: data, names: req.user.first_name };
       res.render("members", hbsObject);
     }
@@ -20,8 +25,18 @@ module.exports = function (app) {
   app.get("/login", async function (req, res) {
     // If the user already has an account send them to the members page
     if (req.user) {
-      var data = await db.Gift.findAll({ raw: true });
-      var list_data = await db.List.findAll({ raw: true });
+      var data = await db.Gift.findAll({
+        where: {
+          id: req.user.id,
+        },
+        raw: true,
+      });
+      var list_data = await db.List.findAll({
+        where: {
+          id: req.user.id,
+        },
+        raw: true,
+      });
 
       var etsy_data = await db.Etsy.findAll({ raw: true });
 
@@ -46,8 +61,18 @@ module.exports = function (app) {
   // If a user who is not logged in tries to access this route they will be redirected to the signup page
   app.get("/members", isAuthenticated, async function (req, res) {
     // res.sendFile(path.join(__dirname, "../public/members.html"));
-    var data = await db.Gift.findAll({ raw: true });
-    var list_data = await db.List.findAll({ raw: true });
+    var data = await db.Gift.findAll({
+      where: {
+        id: req.user.id,
+      },
+      raw: true,
+    });
+    var list_data = await db.List.findAll({
+      where: {
+        userId: req.user.id,
+      },
+      raw: true,
+    });
 
     var etsy_data = await db.Etsy.findAll({
       raw: true,

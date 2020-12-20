@@ -36,3 +36,15 @@ h1{
     height: 90vh;
     width: 200px;
 }
+#button-addon2 {
+    color: black;
+    background: gray;
+}
+#more-items {
+    background: grey;
+    color: white;
+}
+.form-label {
+    color: rgb(58, 131, 10);
+    font-size: 3rem;
+}
