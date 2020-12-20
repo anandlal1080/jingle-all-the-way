@@ -25,6 +25,7 @@ $(function () {
     // clear the input value on the screen
     listInput.val("");
   });
+
   function sendList(listName) {
     $.get("/api/user_data").then(function (data) {
       let userID = data.user.id;
