@@ -63,6 +63,9 @@ $(".list-group-item").on("click", function (event) {
   event.stopPropagation();
   let listId = $(this).attr("data");
   localStorage.setItem("listId", listId);
+  $.post("/api/list_items", {
+    list: listId,
+  });
 });
 
 $(".fas.fa-trash-alt").on("click", function (event) {
