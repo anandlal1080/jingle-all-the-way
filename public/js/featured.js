@@ -65,6 +65,10 @@ $(".list-group-item").on("click", function (event) {
   localStorage.setItem("listId", listId);
   $.post("/api/list_items", {
     list: listId,
+  }).then(function (data) {
+    console.log(data);
+    $.post("/members", { userGifts: data });
+    // location.reload();
   });
 });
 
