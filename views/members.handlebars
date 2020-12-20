@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="stylesheets/featured.css" />
+<link rel="stylesheet" href="stylesheets/members.css" />
 
 <main>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -11,79 +11,92 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="public/index.html">Home</a>
+                        <a class="nav-link active" aria-current="page" href="index">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="public/featured.html">Wish List</a>
+                        <a class="nav-link" href="index" id="logout">Log out</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="public/login.html">Log In</a>
+                        <a class="nav-link" href="login">Log In</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
-    <div class="header">
-        <div class="header-img">
+</main>
+<div class="header">
+    <div class="header-img">
 
-        </div>
-        <h1>Welcome {{ names }} <span class="member-name"></span></h1>
     </div>
+    <h1>Welcome {{ names }} <span class="member-name"></span></h1>
+</div>
 
-    <!--left side of page container-->
-    <div class="container">
-        <div class="row">
-            <div class="col-3">1 of 3
+<!--left side of page container-->
+<div class="container">
+    <div class="row">
+        <div class="col-3">1 of 3
+            <form class="create-form">
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" placeholder="ADD LIST" aria-label="Recipient's username"
                         aria-describedby="button-addon2">
-                    <button class="btn btn-outline-secondary" type="button" id="button-addon2">Button</button>
+                    <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Button</button>
                 </div>
-                <div class="mb-3">
-                    <label for="exampleFormControlTextarea1" class="form-label">Wish List</label>
-                    <ul class="list-group">
-                        <li class="list-group-item">List 1</li>
-                        <li class="list-group-item">List 2</li>
-                        <li class="list-group-item">List 3</li>
-                        <li class="list-group-item">List 4</li>
-                        <li class="list-group-item">List 5</li>
-                    </ul>
-
-                </div>
-            </div>
+            </form>
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">Wish List</label>
+                <ul class="list-group">
+                    {{#each lists}}
 
 
-
-
-            <div class="col-8">2 of 3
-                <div class="row">
-                    {{#each gifts}}
-
-
-                    {{> gifts/gift-block }}
+                    {{> lists/list-block }}
 
 
                     {{/each}}
 
+                </ul>
 
-
-                </div>
             </div>
+        </div>
 
-            <div class="col-1">3 of 3
-                <div class="row justify-content-center">
-                    <div class="text">
-                        <div class="outer">
-                            <img src="images/Screen Shot 2020-12-16 at 6.27.33 PM.png" class="rounded" alt="..." />
-                        </div>
+
+
+
+        <div class="col-8">2 of 3
+            <div class="row" id="etsy-items">
+
+                {{#each etsys}}
+
+
+                {{> etsy/etsy-block }}
+
+
+                {{/each}}
+
+            </div>
+        </div>
+
+        <div class="col-1">3 of 3
+            <div class="row justify-content-center">
+                <div class="text">
+                    <div class="outer">
+                        {{#each gifts}}
+
+
+                        {{> gifts/gift-block }}
+
+
+                        {{/each}}
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
 
-
-    <script type="text/javascript" src="js/featured.js" </script>
-    
-</main >
+<script src="https://code.jquery.com/jquery.js"></script>
+<<<<<<< HEAD <script type="text/javascript" src="/js/featured.js">
+    </script>
+    =======
+    <script type="text/javascript" src="/js/featured.js"> </script>
+    >>>>>>> 7784e776538c47ef4930bae1b8408349f09c363c

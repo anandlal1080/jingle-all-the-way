@@ -87,52 +87,51 @@ module.exports = function (app) {
         await userInstance.addList([newList]);
       })
       .then(function () {
-        res.status(200);
+        res.render("members");
       });
   });
 
   // tester code to be deleted ===================================
-  app.get("/api/etsy", function (req, res) {
-    axios
+  app.get("/api/etsy", async function (req, res) {
+    await axios
       .get(
-        "https://openapi.etsy.com/v2/listings/active/?api_key=8dmo8ta4dscian61zluqduys"
+        `https://openapi.etsy.com/v2/listings/active/?api_key=${process.env.ETSY_KEY}&includes=Images`
       )
       .then(async function ({ data }) {
-        const allResults = data.results;
-
-        async function getlistingId(allResults) {
-          for (let index = 0; index < allResults.length; index++) {
-            const resultItem = allResults[index];
-            let listingId = resultItem.listing_id;
-
-            await axios
-              .get(
-                "https://openapi.etsy.com/v2/listings/" +
-                  listingId +
-                  "/images?api_key=8dmo8ta4dscian61zluqduys"
-              )
-              .then(function ({ images }) {
-                // console.log(data);
-                return images;
-              });
-          }
-          return images;
+        let etsy = [];
+        console.log(data.results.length);
+        for (let i = 0; i < data.results.length; i++) {
+          item = {
+            title: data.results[i].title,
+            image: data.results[i].Images[0].url_170x135,
+          };
+          await db.Etsy.create(item);
+          etsy.push(item);
         }
-        let details = getlistingId(allResults);
-        details.then(function (results) {
-          console.log(results);
-          res.json(results);
-        });
+
+        res.json(etsy);
       });
   });
-  // app.get("/api/etsyimage", function (req, res) {
-  //   const listingId = req.body
-  //   axios.get("https://openapi.etsy.com/v2/listings/" +
-  //   listingId +
-  //   "/images?api_key=" +
-  //   process.env.ETSY_KEY).then(function ({ data }) {
-  //     res.json(data);
-  //   });
-  // });
+
+  app.post("/api/list_items", async function (req, res) {
+    // let list = await db.List.findOne({
+    //   where: {
+    //     id: req.body.list,
+    //   },
+    //   raw: true,
+    // });
+    let giftsId = await db.List.findAll({
+      where: {
+        id: req.body.list,
+      },
+      include: [{model:db.Gift}],
+      through: "giftlist",
+      raw: true,
+    });
+
+    console.log(giftsId);
+    // console.log(gifts);
+    res.json(giftsId);
+  });
   // =============================================================
 };
