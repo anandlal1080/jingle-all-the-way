@@ -117,13 +117,52 @@ module.exports = function (app) {
       where: {
         id: req.body.list,
       },
-      include: [{model:db.Gift}],
+      include: [{ model: db.Gift }],
       through: "giftlist",
       raw: true,
     });
+    for (let i = 0; i < giftsId.length; i++) {
+      console.log(giftsId[i]);
+    }
+    // console.log(gifts);
+    // res.json(giftsId);
+    // var hbsObject = {
+    //   gifts: giftsId,
+    // names: req.user.first_name,
+    // lists: list_data,
+    // etsys: etsy_data,
+    // };
+    // res.render("members", hbsObject);
+  });
 
-    console.log(giftsId);
-    res.json(giftsId);
+  app.post("/api/etsy_items", async function (req, res) {
+    let etsyItem = await db.Etsy.findOne({
+      where: {
+        id: req.body.etsy,
+      },
+      raw: true,
+    });
+    // let giftsId = await db.List.findAll({
+    //   where: {
+    //     id: req.body.list,
+    //   },
+    //   include: [{ model: db.Gift }],
+    //   through: "giftlist",
+    //   raw: true,
+    // });
+    let updateGiftList = await db.Gift.create({
+      name: etsyItem.title,
+      url: etsyItem.image,
+    });
+    let updateList = await db.List.findOne({
+      where: {
+        id: req.body.list,
+      },
+    });
+    await updateList.addGift(updateGiftList);
+    console.log(updateGiftList);
+    // console.log(gifts);
+    res.json(updateGiftList);
   });
   // =============================================================
 };
