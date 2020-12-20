@@ -99,7 +99,7 @@ module.exports = function (app) {
       )
       .then(async function ({ data }) {
         let etsy = [];
-        console.log(data.results.length);
+        // console.log(data.results.length);
         for (let i = 0; i < data.results.length; i++) {
           item = {
             title: data.results[i].title,
@@ -128,18 +128,23 @@ module.exports = function (app) {
       through: "giftlist",
       raw: true,
     });
-    for (let i = 0; i < giftsId.length; i++) {
-      console.log(giftsId[i]);
-    }
+
+    // console.log(db.Gift.get().giftsId);
+    // for (let i = 0; i < giftsId.length; i++) {
+    // }
+    // giftsId.forEach((data) => {
+    //   console.log(data.get("Gifts.id"));
+    // });
     // console.log(gifts);
     // res.json(giftsId);
     // var hbsObject = {
     //   gifts: giftsId,
-    // names: req.user.first_name,
-    // lists: list_data,
-    // etsys: etsy_data,
+    //   names: req.user.first_name,
+    //   lists: list_data,
+    //   etsys: etsy_data,
     // };
-    // res.render("members", hbsObject);
+    //   // res.render("members", hbsObject);
+    console.log(req.body.list);
   });
 
   app.post("/api/etsy_items", async function (req, res) {
@@ -149,14 +154,7 @@ module.exports = function (app) {
       },
       raw: true,
     });
-    // let giftsId = await db.List.findAll({
-    //   where: {
-    //     id: req.body.list,
-    //   },
-    //   include: [{ model: db.Gift }],
-    //   through: "giftlist",
-    //   raw: true,
-    // });
+
     let updateGiftList = await db.Gift.create({
       name: etsyItem.title,
       url: etsyItem.image,
@@ -167,8 +165,7 @@ module.exports = function (app) {
       },
     });
     await updateList.addGift(updateGiftList);
-    console.log(updateGiftList);
-    // console.log(gifts);
+
     res.json(updateGiftList);
   });
   // =============================================================
