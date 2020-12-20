@@ -51,6 +51,7 @@ $("#more-items").on("click", function (event) {
   event.stopPropagation();
   renderEtsy();
 });
+
 function renderEtsy() {
   $.get("/api/etsy");
   location.reload();
@@ -64,13 +65,11 @@ $(".list-group-item").on("click", function (event) {
   localStorage.setItem("listId", listId);
   $.post("/api/list_items", {
     list: listId,
+  }).then(function (data) {
+    console.log(data);
+    $.post("/members", { userGifts: data });
+    // location.reload();
   });
-});
-
-$(".fas.fa-trash-alt").on("click", function (event) {
-  event.stopPropagation();
-  let trashId = $(this).attr("data");
-  console.log(trashId);
 });
 
 $(".fas.fa-gift").on("click", function (event) {
@@ -84,4 +83,18 @@ $(".fas.fa-gift").on("click", function (event) {
       list: listId,
     });
   }
+});
+
+// This button click will delete a list
+$(".fas.fa-trash-alt").on("click", function (event) {
+  event.stopPropagation();
+  let trashId = $(this).attr("data");
+  // console.log(trashId);
+
+  // this makes the call to our api controller that will delete it from the db.
+  $.post("/api/delete_list", {
+    dlt_list: trashId,
+  }).then(function (data) {
+    location.reload();
+  });
 });

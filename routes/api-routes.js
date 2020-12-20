@@ -2,6 +2,7 @@
 const db = require("../models");
 const passport = require("../config/passport");
 const axios = require("axios");
+const { map } = require("jquery");
 
 module.exports = function (app) {
   // Using the passport.authenticate middleware with our local strategy.
@@ -99,7 +100,7 @@ module.exports = function (app) {
       )
       .then(async function ({ data }) {
         let etsy = [];
-        // console.log(data.results.length);
+
         for (let i = 0; i < data.results.length; i++) {
           item = {
             title: data.results[i].title,
@@ -114,31 +115,35 @@ module.exports = function (app) {
   });
 
   app.post("/api/list_items", async function (req, res) {
-    let giftsId = await db.List.findAll({
-      where: {
-        id: req.body.list,
-      },
-      include: [{ model: db.Gift }],
-      through: "giftlist",
-      raw: true,
-    });
-
-    // console.log(db.Gift.get().giftsId);
-    // for (let i = 0; i < giftsId.length; i++) {
-    // }
-    // giftsId.forEach((data) => {
-    //   console.log(data.get("Gifts.id"));
+    // let list = await db.List.findOne({
+    //   where: {
+    //     id: req.body.list,
+    //   },
+    //   raw: true,
     // });
-    // console.log(gifts);
-    // res.json(giftsId);
-    // var hbsObject = {
-    //   gifts: giftsId,
-    //   names: req.user.first_name,
-    //   lists: list_data,
-    //   etsys: etsy_data,
-    // };
-    //   // res.render("members", hbsObject);
-    console.log(req.body.list);
+    try {
+      // console.log(req.body);
+      let giftsId = await db.List.findAll({
+        where: {
+          id: req.body.list,
+        },
+        include: [{ model: db.Gift }],
+        through: "giftlist",
+        raw: true,
+      });
+      userGiftList = [];
+      for (let i = 0; i < giftsId.length; i++) {
+        let gifts = {
+          id: giftsId[i]["Gifts.id"],
+          name: giftsId[i]["Gifts.name"],
+          url: giftsId[i]["Gifts.url"],
+        };
+        userGiftList.push(gifts);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+    res.json(userGiftList);
   });
 
   app.post("/api/etsy_items", async function (req, res) {
@@ -163,4 +168,17 @@ module.exports = function (app) {
     res.json(updateGiftList);
   });
   // =============================================================
+  // this route removes the user list selected from the memberspage
+  // and returns the updated list
+  app.post("/api/delete_list", async function (req, res) {
+    let removeList = req.body.dlt_list;
+
+    await db.List.destroy({
+      where: {
+        id: removeList,
+      },
+    });
+
+    res.end();
+  });
 };

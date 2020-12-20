@@ -61,12 +61,21 @@ module.exports = function (app) {
   // If a user who is not logged in tries to access this route they will be redirected to the signup page
   app.get("/members", isAuthenticated, async function (req, res) {
     // res.sendFile(path.join(__dirname, "../public/members.html"));
+
     var data = await db.Gift.findAll({
       where: {
         id: req.user.id,
       },
       raw: true,
     });
+
+    app.post("/members", isAuthenticated, function (req, res) {
+      console.log(req.body.userGifts);
+      var data = {
+        gifts: req.body.userGifts,
+      };
+    });
+
     var list_data = await db.List.findAll({
       where: {
         userId: req.user.id,
@@ -78,7 +87,6 @@ module.exports = function (app) {
       raw: true,
       order: [["id", "DESC"]],
     });
-
     var hbsObject = {
       gifts: data,
       names: req.user.first_name,
