@@ -88,7 +88,7 @@ module.exports = function (app) {
       order: [["id", "DESC"]],
     });
     var hbsObject = {
-      gifts: burrito,
+      gifts: data,
       names: req.user.first_name,
       lists: list_data,
       etsys: etsy_data,
