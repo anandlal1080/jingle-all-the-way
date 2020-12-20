@@ -38,7 +38,6 @@ $(function () {
           location.reload();
         });
       } catch (error) {
-        console.log("this is in the memebers.js");
         console.log(error);
         res.status(500).end();
       }
