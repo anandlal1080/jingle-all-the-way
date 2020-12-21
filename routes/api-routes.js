@@ -137,6 +137,8 @@ module.exports = function (app) {
           id: giftsId[i]["Gifts.id"],
           name: giftsId[i]["Gifts.name"],
           url: giftsId[i]["Gifts.url"],
+          listing_url: giftsId[i]["Gifts.listing_url"],
+          price: giftsId[i]["Gifts.price"],
         };
         userGiftList.push(gifts);
       }
@@ -157,6 +159,8 @@ module.exports = function (app) {
     let updateGiftList = await db.Gift.create({
       name: etsyItem.title,
       url: etsyItem.image,
+      listing_url: etsyItem.listing_url,
+      price: etsyItem.price,
     });
     let updateList = await db.List.findOne({
       where: {
