@@ -4,6 +4,8 @@ module.exports = function (sequelize, DataTypes) {
 
     title: DataTypes.STRING,
     image: DataTypes.TEXT,
+    listing_url: DataTypes.TEXT,
+    price: DataTypes.STRING,
   });
 
   return Etsy;
