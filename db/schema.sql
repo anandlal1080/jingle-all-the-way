@@ -1,4 +1,7 @@
+-- create schema and seeds for data to be held in a relational database
+
 DROP DATABASE IF EXISTS `jingle_all_the_way_db`;
+
 CREATE DATABASE `jingle_all_the_way_db`;
 
 USE jingle_all_the_way_db;

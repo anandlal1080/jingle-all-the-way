@@ -75,7 +75,7 @@ $(".list-group-item").on("click", function (event) {
 $(".fas.fa-trash-alt").on("click", function (event) {
   event.stopPropagation();
   let trashId = $(this).attr("data");
-  console.log(trashId);
+  // console.log(trashId);
 });
 
 $(".fas.fa-gift").on("click", function (event) {
