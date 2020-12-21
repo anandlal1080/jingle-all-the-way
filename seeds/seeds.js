@@ -26,6 +26,7 @@ var pass = bcrypt.hashSync("12345", bcrypt.genSaltSync(10), null);
   ];
   await db.List.bulkCreate(list);
 
+  // array of gifts
   const gifts = [
     {
       name: "Xbox",

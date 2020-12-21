@@ -22,18 +22,24 @@ $(logoutAncher).on("click", function () {
   // When the form is submitted, we send the data to our api/db
   $("#list-btn").on("click", function (event) {
     event.preventDefault();
+    
     // get our user data from the form and store it in a new object
     const newListData = {
       listName: listInput.val().trim(),
     };
     console.log(newListData);
+    
     // Check to make sure our new object has a value
     if (!newListData.listName) return;
+    
     // call our sendlist function passing in our new object
     sendList(newListData);
+    
     // clear the input value on the screen
     listInput.val("");
   });
+
+
   function sendList(listName) {
     console.log("made it this far");
     $.get("/api/user_data").then(function (data) {
@@ -51,8 +57,10 @@ $(logoutAncher).on("click", function () {
       }
     });
 
+
     // console.log(listName, userID, "this is still in the members.js")
   }
+  
   // Tester code =======================================================
   getEtsyListings();
 
