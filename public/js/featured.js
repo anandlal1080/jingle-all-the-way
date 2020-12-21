@@ -89,8 +89,7 @@ $(".list-group-item").on("click", function (event) {
     $("#gifts-location").empty();
 
     // this is where I'm going to dynamically create the gift items inside each list
-    console.log(data);
-    for (let i = data.length-1; i >= 0; i--) {
+    for (let i = data.length - 1; i >= 0; i--) {
       let name = data[i].name;
       let image = data[i].url;
 
@@ -145,7 +144,6 @@ $(".fas.fa-trash-alt").on("click", function (event) {
 
 $("#logout").on("click", function (event) {
   event.stopPropagation();
-
   logOut();
 });
 

@@ -2,7 +2,7 @@
 const db = require("../models");
 const passport = require("../config/passport");
 const axios = require("axios");
-const { Op } = require("sequelize")
+const { Op } = require("sequelize");
 const { map } = require("jquery");
 
 module.exports = function (app) {
@@ -108,14 +108,7 @@ module.exports = function (app) {
   });
 
   app.post("/api/list_items", async function (req, res) {
-    // let list = await db.List.findOne({
-    //   where: {
-    //     id: req.body.list,
-    //   },
-    //   raw: true,
-    // });
     try {
-      // console.log(req.body);
       let giftsId = await db.List.findAll({
         where: {
           id: req.body.list,
@@ -142,7 +135,7 @@ module.exports = function (app) {
   });
 
   app.post("/api/etsy_items", async function (req, res) {
-    console.log(req.body)
+    console.log(req.body);
     let etsyItem = await db.Etsy.findOne({
       where: {
         id: req.body.etsy,
@@ -158,10 +151,7 @@ module.exports = function (app) {
     });
     let updateList = await db.List.findOne({
       where: {
-        [Op.and]:[
-          {id: req.body.list},
-          {UserId: req.body.userId}
-        ]
+        [Op.and]: [{ id: req.body.list }, { UserId: req.body.userId }],
       },
     });
     await updateList.addGift(updateGiftList);
