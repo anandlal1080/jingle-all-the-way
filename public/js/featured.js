@@ -87,30 +87,34 @@ $(".list-group-item").on("click", function (event) {
 
     // this is where I"m going to clear the list before populating it
     $("#gifts-location").empty();
-
     // this is where I'm going to dynamically create the gift items inside each list
-    for (let i = data.length - 1; i >= 0; i--) {
-      let name = data[i].name;
-      let image = data[i].url;
-      let price = data[i].price;
-      let url = data[i].listing_url;
+    if (data[0].name) {
+      for (let i = data.length - 1; i >= 0; i--) {
+        let name = data[i].name;
+        let image = data[i].url;
+        let price = data[i].price;
+        let url = data[i].listing_url;
+        let br = $("<br>");
 
-      let cardEl = $("<div>").attr("class", "card shadow mt-5");
-      let cardInner = $("<div>").attr("class", "inner");
-      let imgEl = $("<img>").attr("src", image);
-      let cardBody = $("<div>").attr("class", "card-body text-justify");
-      let pEl = $("<p>").attr("style", "margin-left: 0").text(name);
-      let spanEl = $("<span>")
-        .attr("style", "font-weight: bold")
-        .text(`Price:${price}`);
-      let urlEl = $("<a>").attr("href", url).text("Item Link");
-      $("#gifts-location").append(
-        cardEl.append(
-          cardInner
-            .append(imgEl)
-            .append(cardBody.append(pEl).append(spanEl).append(urlEl))
-        )
-      );
+        let cardEl = $("<div>").attr("class", "card shadow mt-5");
+        let cardInner = $("<div>").attr("class", "inner");
+        let imgEl = $("<img>").attr("src", image);
+        let cardBody = $("<div>").attr("class", "card-body text-justify");
+        let pEl = $("<p>").attr("style", "margin-left: 0").text(name);
+        let spanEl = $("<span>")
+          .attr("style", "font-weight: bold")
+          .text(`Price: $${price}`);
+        let urlEl = $("<a>").attr("href", url).text("Item Link");
+        $("#gifts-location").append(
+          cardEl.append(
+            cardInner
+              .append(imgEl)
+              .append(
+                cardBody.append(pEl).append(spanEl).append(br).append(urlEl)
+              )
+          )
+        );
+      }
     }
   });
 });
@@ -131,26 +135,24 @@ $(".fas.fa-gift").on("click", function (event) {
       });
     });
     // console.log($(this).siblings());
-    
-    let name = $(`#title-${etsyId}`).text()
-    let image = $(`#image-${etsyId}`).attr("src")
-    let price = $(`#price-${etsyId}`).text()
-    let url = $(`#listingUrl-${etsyId}`).text()
 
+    let name = $(`#title-${etsyId}`).text();
+    let image = $(`#image-${etsyId}`).attr("src");
+    let price = $(`#price-${etsyId}`).text();
+    let url = $(`#listingUrl-${etsyId}`).text();
+    let br = $("<br>");
     let cardEl = $("<div>").attr("class", "card shadow mt-5");
     let cardInner = $("<div>").attr("class", "inner");
     let imgEl = $("<img>").attr("src", image);
     let cardBody = $("<div>").attr("class", "card-body text-justify");
     let pEl = $("<p>").attr("style", "margin-left: 0").text(name);
-    let spanEl = $("<span>")
-      .attr("style", "font-weight: bold")
-      .text(price);
+    let spanEl = $("<span>").attr("style", "font-weight: bold").text(price);
     let urlEl = $("<a>").attr("href", url).text("Item Link");
     $("#gifts-location").prepend(
       cardEl.append(
         cardInner
           .append(imgEl)
-          .append(cardBody.append(pEl).append(spanEl).append(urlEl))
+          .append(cardBody.append(pEl).append(spanEl).append(br).append(urlEl))
       )
     );
   }
@@ -178,4 +180,3 @@ function logOut() {
   $.get("/api/logout");
   location.reload();
 }
-
