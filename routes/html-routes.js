@@ -18,19 +18,12 @@ module.exports = function (app) {
       var hbsObject = { gifts: data, names: req.user.first_name };
       res.render("members", hbsObject);
     }
-    // res.sendFile(path.join(__dirname, "../public/index.html"));
     res.render("index");
   });
 
   app.get("/login", async function (req, res) {
     // If the user already has an account send them to the members page
     if (req.user) {
-      var data = await db.Gift.findAll({
-        where: {
-          id: req.user.id,
-        },
-        raw: true,
-      });
       var list_data = await db.List.findAll({
         where: {
           id: req.user.id,
@@ -41,7 +34,6 @@ module.exports = function (app) {
       var etsy_data = await db.Etsy.findAll({ raw: true });
 
       var hbsObject = {
-        gifts: data,
         names: req.user.first_name,
         lists: list_data,
         etsys: etsy_data,
@@ -60,18 +52,9 @@ module.exports = function (app) {
   // Here we've add our isAuthenticated middleware to this route.
   // If a user who is not logged in tries to access this route they will be redirected to the signup page
   app.get("/members", isAuthenticated, async function (req, res) {
-    
     // console.log(req.query.userGifts, "inside /members get method")
 
     // let data = req.query.userGifts;
-
-    var data = await db.Gift.findAll({
-      where: {
-        id: req.user.id,
-      },
-      raw: true,
-    });
-
 
     var list_data = await db.List.findAll({
       where: {
@@ -85,7 +68,6 @@ module.exports = function (app) {
       order: [["id", "DESC"]],
     });
     var hbsObject = {
-      gifts: data,
       names: req.user.first_name,
       lists: list_data,
       etsys: etsy_data,
@@ -93,9 +75,4 @@ module.exports = function (app) {
 
     res.render("members", hbsObject);
   });
-  // app.post("/members", isAuthenticated, async function (req, res) {
-  //   let stuff = req.name;
-  //   console.log(stuff)
-  //   res.send(stuff);
-  // });
 };
