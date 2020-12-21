@@ -32,7 +32,6 @@ $(function () {
   function sendList(listName) {
     $.get("/api/user_data").then(function (data) {
       let userID = data.user.id;
-
       try {
         $.post("/api/user_lists", {
           name: listName,
@@ -75,6 +74,7 @@ function clearEtsy() {
 
 localStorage.clear();
 
+// this is our click function for lists in col-1
 $(".list-group-item").on("click", function (event) {
   event.stopPropagation();
   let listId = $(this).attr("data");
@@ -83,12 +83,14 @@ $(".list-group-item").on("click", function (event) {
     list: listId,
   }).then(function (data) {
     // $.get("/members", { userGifts: data });
-    // location.reload();
+    // ==================================================================
+
     // this is where I"m going to clear the list before populating it
     $("#gifts-location").empty();
 
     // this is where I'm going to dynamically create the gift items inside each list
-    for (let i = 0; i < data.length; i++) {
+    console.log(data);
+    for (let i = data.length-1; i >= 0; i--) {
       let name = data[i].name;
       let image = data[i].url;
       let price = data[i].price;
@@ -113,16 +115,21 @@ $(".list-group-item").on("click", function (event) {
     }
   });
 });
-
+// this is our click function for the gifts Icon
 $(".fas.fa-gift").on("click", function (event) {
   event.stopPropagation();
   if (localStorage.getItem("listId") != null) {
     let etsyId = $(this).attr("data");
-    const listId = localStorage.getItem("listId");
+    $.get("/api/user_data").then(function (data) {
+      let userID = data.user.id;
+      console.log(etsyId);
+      const listId = localStorage.getItem("listId");
 
-    $.post("/api/etsy_items", {
-      etsy: etsyId,
-      list: listId,
+      $.post("/api/etsy_items", {
+        etsy: etsyId,
+        list: listId,
+        userId: userID,
+      });
     });
     console.log($(this).siblings());
     console.log($(this).siblings("span").text());

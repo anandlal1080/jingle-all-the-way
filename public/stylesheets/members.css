@@ -33,11 +33,13 @@ h1{
 
 .inner{
     overflow: hidden;
+    font-size: .85rem;
 }
 .inner img {
     transition: all 1.5s ease;
     height: 150px;
     border: black solid 2px;
+    box-shadow: 5px 4px 10px 2px #888888;
 }
 .inner:hover img {
     transform: scale(1.5);
@@ -69,11 +71,47 @@ h1{
 }
 
 
-
-/* #test {
-    margin-top: 10px;
-    color:red;
-
-} */
-
+#customHead {
+    
+    animation-name: loco;
+    animation-duration: 7s;
+    animation-timing-function: ease;
+    animation-iteration-count: infinite;
+    animation-delay: 1s;
+}
+@keyframes loco {
+    0% {
+      color: rgb(255, 0, 0);
+    }
+    10% {
+      color: rgb(250, 84, 7);
+    }
+    20% {
+      color: rgb(250, 205, 4);
+    }
+    30% {
+      color: rgb(201, 252, 82);
+    }
+    40% {
+      color: rgb(84, 250, 43);
+    }
+    50% {
+      color: rgb(84, 250, 43);
+    }
+    60% {
+      color: rgb(201, 252, 82);
+    }
+    70% {
+      color: rgb(250, 205, 4);
+    }
+    80% {
+      color: rgb(250, 84, 7);
+    }
+    90% {
+      color: rgba(250, 44, 44);
+    }
+    100% {
+      color: rgba(255, 0, 0);
+    }
+  }
 

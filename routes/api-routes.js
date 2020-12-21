@@ -2,6 +2,7 @@
 const db = require("../models");
 const passport = require("../config/passport");
 const axios = require("axios");
+const { Op } = require("sequelize");
 const { map } = require("jquery");
 
 module.exports = function (app) {
@@ -51,7 +52,11 @@ module.exports = function (app) {
             Id: req.user.id,
           },
         });
-        const listItems = await userInstance.getLists();
+        const listItems = await db.List.findAll({
+          where: {
+            UserId: req.user.id,
+          },
+        });
         // console.log(listItems);
         res.json({
           listItems,
@@ -68,26 +73,14 @@ module.exports = function (app) {
 
   // Tester code to be finalized =====================================
   app.post("/api/user_lists", async function (req, res) {
-    const userListName = req.body.name.listName + req.body.userId;
+    const userListName = req.body.name.listName;
+    // console.log(req.body.userId)
     db.List.create({
       name: userListName,
-    })
-      .then(async function () {
-        const newList = await db.List.findOne({
-          where: {
-            name: userListName,
-          },
-        });
-        const userInstance = await db.User.findOne({
-          where: {
-            id: req.body.userId,
-          },
-        });
-        await userInstance.addList([newList]);
-      })
-      .then(function () {
-        res.render("members");
-      });
+      UserId: req.body.userId,
+    }).then(function () {
+      res.render("members");
+    });
   });
 
   // tester code to be deleted ===================================
@@ -149,6 +142,7 @@ module.exports = function (app) {
   });
 
   app.post("/api/etsy_items", async function (req, res) {
+    console.log(req.body);
     let etsyItem = await db.Etsy.findOne({
       where: {
         id: req.body.etsy,
@@ -164,7 +158,7 @@ module.exports = function (app) {
     });
     let updateList = await db.List.findOne({
       where: {
-        id: req.body.list,
+        [Op.and]: [{ id: req.body.list }, { UserId: req.body.userId }],
       },
     });
     await updateList.addGift(updateGiftList);
