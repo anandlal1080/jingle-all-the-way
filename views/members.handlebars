@@ -58,8 +58,12 @@
 
 
         <div class="col-7">
-            <button class="btn btn-outline-secondary mt-2 mb-2" type="submit" id="more-items">load more items</button>
-            <button class="btn btn-outline-secondary mt-2 mb-2" type="submit" id="clear-items">REFRESH</button>
+            <button class="btn btn-outline-secondary" id="imgload" type="button" disabled style="display: none;">
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                Loading...
+            </button>
+            <button class="btn btn-outline-secondary mt-2 mb-2" type="submit" id="more-items">Load More Items</button>
+            <button class="btn btn-outline-secondary mt-2 mb-2" type="submit" id="clear-etsy">REFRESH</button>
             <div class="row" id="etsy-items">
 
                 {{#each etsys}}
