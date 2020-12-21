@@ -51,6 +51,8 @@ $(function () {
 
 $("#more-items").on("click", function (event) {
   event.stopPropagation();
+  $("#imgload").show();
+  $("#more-items").hide();
   renderEtsy();
 });
 
