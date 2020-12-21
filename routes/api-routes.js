@@ -52,7 +52,7 @@ module.exports = function (app) {
           },
         });
         const listItems = await userInstance.getLists();
-        // console.log(listItems);
+        console.log(listItems);
         res.json({
           listItems,
           user: {
