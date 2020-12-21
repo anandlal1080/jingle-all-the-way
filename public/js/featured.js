@@ -92,8 +92,8 @@ $(".list-group-item").on("click", function (event) {
               .append($("<img>").attr("src", image))
               .append(
                 $("<div>")
-                  .attr("class", "card-body text-center")
-                  .append($("<p>").text(name))
+                  .attr("class", "card-body text-justify")
+                  .append($("<p>").text(name).attr("style", "margin-left: 0"))
               )
           )
       );
@@ -126,3 +126,15 @@ $(".fas.fa-trash-alt").on("click", function (event) {
     location.reload();
   });
 });
+
+$("#logout").on("click", function (event) {
+  event.stopPropagation();
+  console.log("clicked");
+
+  logOut();
+});
+
+function logOut() {
+  $.get("/api/logout");
+  location.reload();
+}
