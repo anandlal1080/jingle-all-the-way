@@ -93,20 +93,24 @@ $(".list-group-item").on("click", function (event) {
     for (let i = data.length-1; i >= 0; i--) {
       let name = data[i].name;
       let image = data[i].url;
+      let price = data[i].price;
+      let url = data[i].listing_url;
 
+      let cardEl = $("<div>").attr("class", "card shadow mt-5");
+      let cardInner = $("<div>").attr("class", "inner");
+      let imgEl = $("<img>").attr("src", image);
+      let cardBody = $("<div>").attr("class", "card-body text-justify");
+      let pEl = $("<p>").attr("style", "margin-left: 0").text(name);
+      let spanEl = $("<span>")
+        .attr("style", "font-weight: bold")
+        .text(`Price:${price}`);
+      let urlEl = $("<a>").attr("href", url).text("Item Link");
       $("#gifts-location").append(
-        $("<div>")
-          .attr("class", "card shadow mt-5")
-          .append(
-            $("<div>")
-              .attr("class", "inner")
-              .append($("<img>").attr("src", image))
-              .append(
-                $("<div>")
-                  .attr("class", "card-body text-justify")
-                  .append($("<p>").text(name).attr("style", "margin-left: 0"))
-              )
-          )
+        cardEl.append(
+          cardInner
+            .append(imgEl)
+            .append(cardBody.append(pEl).append(spanEl).append(urlEl))
+        )
       );
     }
   });
@@ -127,6 +131,29 @@ $(".fas.fa-gift").on("click", function (event) {
         userId: userID,
       });
     });
+    // console.log($(this).siblings());
+    
+    let name = $(`#title-${etsyId}`).text()
+    let image = $(`#image-${etsyId}`).attr("src")
+    let price = $(`#price-${etsyId}`).text()
+    let url = $(`#listingUrl-${etsyId}`).text()
+
+    let cardEl = $("<div>").attr("class", "card shadow mt-5");
+    let cardInner = $("<div>").attr("class", "inner");
+    let imgEl = $("<img>").attr("src", image);
+    let cardBody = $("<div>").attr("class", "card-body text-justify");
+    let pEl = $("<p>").attr("style", "margin-left: 0").text(name);
+    let spanEl = $("<span>")
+      .attr("style", "font-weight: bold")
+      .text(price);
+    let urlEl = $("<a>").attr("href", url).text("Item Link");
+    $("#gifts-location").prepend(
+      cardEl.append(
+        cardInner
+          .append(imgEl)
+          .append(cardBody.append(pEl).append(spanEl).append(urlEl))
+      )
+    );
   }
 });
 

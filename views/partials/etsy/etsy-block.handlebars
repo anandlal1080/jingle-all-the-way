@@ -1,17 +1,17 @@
 <div class="card shadow m-1" style="width: 11rem">
     <div class="inner">
-        <img src={{ image }} class="card-img-top" alt="..." />
+        <img src={{ image }} id="image-{{id}}" class="card-img-top" alt="..." />
         <div class="card-body text-justify">
 
-            {{ title }}
+            <p id="title-{{id}}">{{ title }}</p>
 
 
             <div class="card text-center">
                 <div class="card-footer">
                     <ul class="nav nav-pills card-header-pills">
                         <li class="nav-item">
-                            <span> <b>Price:${{ price }} </b> </span>
-                            <a href={{ listing_url }} target="_blank">Listing URL</a>
+                            <span id="price-{{id}}" <b>Price:${{ price }} </b> </span>
+                            <a id="listingUrl-{{id}}" href={{ listing_url }} target="_blank">Listing URL</a>
                         <li class="nav-item">
                         </li>
 
