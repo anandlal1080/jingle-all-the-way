@@ -70,9 +70,9 @@ $(".list-group-item").on("click", function (event) {
   $.post("/api/list_items", {
     list: listId,
   }).then(function (data) {
-    console.log(data[0].url);
     // $.get("/members", { userGifts: data });
-    // location.reload();
+
+
     // this is where I"m going to clear the list before populating it
     $("#gifts-location").empty();
 
