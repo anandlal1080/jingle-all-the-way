@@ -57,8 +57,20 @@ $("#more-items").on("click", function (event) {
 });
 
 function renderEtsy() {
-  $.get("/api/etsy");
-  location.reload();
+  $.get("/api/etsy").then(function () {
+    location.reload();
+  });
+}
+
+$("#clear-etsy").on("click", function (event) {
+  event.stopPropagation();
+  clearEtsy();
+});
+
+function clearEtsy() {
+  $.post("/api/clear_etsy").then(function (data) {
+    location.reload();
+  });
 }
 
 localStorage.clear();

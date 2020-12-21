@@ -181,4 +181,13 @@ module.exports = function (app) {
 
     res.end();
   });
+
+  app.post("/api/clear_etsy", async function (req, res) {
+    await db.Etsy.destroy({
+      where: {},
+      truncate: true,
+    });
+
+    res.end();
+  });
 };

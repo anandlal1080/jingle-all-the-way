@@ -6,11 +6,5 @@ module.exports = function (sequelize, DataTypes) {
     image: DataTypes.TEXT,
   });
 
-  Etsy.associate = function (models) {
-    models.Etsy.belongsToMany(models.Gift, {
-      through: "etsygifts",
-    });
-  };
-
   return Etsy;
 };
