@@ -71,10 +71,47 @@ h1{
 }
 
 
-
- #custom {
-   
-
-} 
-
+#customHead {
+    
+    animation-name: loco;
+    animation-duration: 7s;
+    animation-timing-function: ease;
+    animation-iteration-count: infinite;
+    animation-delay: 1s;
+}
+@keyframes loco {
+    0% {
+      color: rgb(255, 0, 0);
+    }
+    10% {
+      color: rgb(250, 84, 7);
+    }
+    20% {
+      color: rgb(250, 205, 4);
+    }
+    30% {
+      color: rgb(201, 252, 82);
+    }
+    40% {
+      color: rgb(84, 250, 43);
+    }
+    50% {
+      color: rgb(84, 250, 43);
+    }
+    60% {
+      color: rgb(201, 252, 82);
+    }
+    70% {
+      color: rgb(250, 205, 4);
+    }
+    80% {
+      color: rgb(250, 84, 7);
+    }
+    90% {
+      color: rgba(250, 44, 44);
+    }
+    100% {
+      color: rgba(255, 0, 0);
+    }
+  }
 
