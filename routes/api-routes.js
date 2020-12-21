@@ -94,7 +94,7 @@ module.exports = function (app) {
   app.get("/api/etsy", async function (req, res) {
     await axios
       .get(
-        `https://openapi.etsy.com/v2/listings/active/?api_key=${process.env.ETSY_KEY}&includes=Images`
+        `https://openapi.etsy.com/v2/listings/active/?api_key=${process.env.ETSY_KEY}&includes=Images(url_170x135):1&fields=url,title,price`
       )
       .then(async function ({ data }) {
         let etsy = [];
