@@ -2,7 +2,7 @@ $(function () {
   // This file just does a GET request to figure out which user is logged in
   // and updates the HTML on the page
   // $.get("/api/user_data").then(function (data) {
-  //   console.log(data);
+
   //   $(".member-name").text(data.user.first_name + " " + data.user.last_name);
   // });
 
@@ -13,7 +13,6 @@ $(function () {
   // When the form is submitted, we send the data to our api/db
   $(newListForm).on("submit", function (event) {
     event.preventDefault();
-    console.log("click me");
 
     // get our user data from the form and store it in a new object
     const newListData = {
@@ -34,7 +33,6 @@ $(function () {
     $.get("/api/user_data").then(function (data) {
       let userID = data.user.id;
 
-      // console.log(data.user);
       try {
         $.post("/api/user_lists", {
           name: listName,
@@ -82,7 +80,6 @@ $(".list-group-item").on("click", function (event) {
   $.post("/api/list_items", {
     list: listId,
   }).then(function (data) {
-    console.log(data[0].url);
     // $.get("/members", { userGifts: data });
     // location.reload();
     // this is where I"m going to clear the list before populating it
@@ -116,7 +113,7 @@ $(".fas.fa-gift").on("click", function (event) {
   if (localStorage.getItem("listId") != null) {
     let etsyId = $(this).attr("data");
     const listId = localStorage.getItem("listId");
-    console.log(listId, etsyId);
+
     $.post("/api/etsy_items", {
       etsy: etsyId,
       list: listId,
@@ -128,7 +125,6 @@ $(".fas.fa-gift").on("click", function (event) {
 $(".fas.fa-trash-alt").on("click", function (event) {
   event.stopPropagation();
   let trashId = $(this).attr("data");
-  // console.log(trashId);
 
   // this makes the call to our api controller that will delete it from the db.
   $.post("/api/delete_list", {
@@ -140,7 +136,6 @@ $(".fas.fa-trash-alt").on("click", function (event) {
 
 $("#logout").on("click", function (event) {
   event.stopPropagation();
-  console.log("clicked");
 
   logOut();
 });
