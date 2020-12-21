@@ -131,14 +131,12 @@ $(".fas.fa-gift").on("click", function (event) {
         userId: userID,
       });
     });
-    console.log($(this).siblings());
-    console.log($(this).siblings("span").text());
-
-    let name = $(this).parent().text();
-    console.log(name);
-    let image = data[i].url;
-    let price = $(this).siblings("span").text();
-    let url = data[i].listing_url;
+    // console.log($(this).siblings());
+    
+    let name = $(`#title-${etsyId}`).text()
+    let image = $(`#image-${etsyId}`).attr("src")
+    let price = $(`#price-${etsyId}`).text()
+    let url = $(`#listingUrl-${etsyId}`).text()
 
     let cardEl = $("<div>").attr("class", "card shadow mt-5");
     let cardInner = $("<div>").attr("class", "inner");
@@ -149,7 +147,7 @@ $(".fas.fa-gift").on("click", function (event) {
       .attr("style", "font-weight: bold")
       .text(price);
     let urlEl = $("<a>").attr("href", url).text("Item Link");
-    $("#gifts-location").append(
+    $("#gifts-location").prepend(
       cardEl.append(
         cardInner
           .append(imgEl)
