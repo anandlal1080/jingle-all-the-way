@@ -24,7 +24,7 @@ Once logged in, The user will be presented with their member specific view which
 If the user selects a list, they are then presented with a screen that allows them to Add items, View items or Update their current items.
 ```
 
-![Overview](./images/suggestionspg.jpg)
+![Overview](./images/suggestionspg.png)
 
 # Technologies Used
 
