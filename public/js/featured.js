@@ -151,3 +151,4 @@ function logOut() {
   $.get("/api/logout");
   location.reload();
 }
+
