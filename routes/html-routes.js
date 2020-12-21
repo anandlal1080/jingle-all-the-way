@@ -60,7 +60,15 @@ module.exports = function (app) {
   // Here we've add our isAuthenticated middleware to this route.
   // If a user who is not logged in tries to access this route they will be redirected to the signup page
   app.get("/members", isAuthenticated, async function (req, res) {
-    // res.sendFile(path.join(__dirname, "../public/members.html"));
+    // this is our post route inside our get route
+    // app.post("/members", isAuthenticated, function (req, res) {
+    //   console.log(req.body.userGifts);
+    //   var info = {
+    //     gifts: req.body.userGifts,
+    //   };
+      
+    // });
+    console.log(req.query.userGifts, "inside /members get method")
 
     var data = await db.Gift.findAll({
       where: {
@@ -69,12 +77,6 @@ module.exports = function (app) {
       raw: true,
     });
 
-    app.post("/members", isAuthenticated, function (req, res) {
-      console.log(req.body.userGifts);
-      var data = {
-        gifts: req.body.userGifts,
-      };
-    });
 
     var list_data = await db.List.findAll({
       where: {
@@ -96,8 +98,9 @@ module.exports = function (app) {
 
     res.render("members", hbsObject);
   });
-  app.post("/members", isAuthenticated, async function (req, res) {
-    let stuff = req.name;
-    res.send(stuff);
-  });
+  // app.post("/members", isAuthenticated, async function (req, res) {
+  //   let stuff = req.name;
+  //   console.log(stuff)
+  //   res.send(stuff);
+  // });
 };

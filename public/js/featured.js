@@ -65,8 +65,8 @@ $(".list-group-item").on("click", function (event) {
   $.post("/api/list_items", {
     list: listId,
   }).then(function (data) {
-    console.log(data);
-    $.post("/members", { userGifts: data });
+    // console.log(data);
+    $.get("/members", { userGifts: data });
     // location.reload();
   });
 });
@@ -96,4 +96,5 @@ $(".fas.fa-trash-alt").on("click", function (event) {
   }).then(function (data) {
     location.reload();
   });
+
 });
