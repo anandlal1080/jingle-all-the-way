@@ -11,7 +11,7 @@ $(function () {
   const listInput = $(".form-control");
 
   // When the form is submitted, we send the data to our api/db
-  $(".create-form").on("submit", function (event) {
+  $(newListForm).on("submit", function (event) {
     event.preventDefault();
     console.log("click me");
     // get our user data from the form and store it in a new object
@@ -25,6 +25,7 @@ $(function () {
     // clear the input value on the screen
     listInput.val("");
   });
+
   function sendList(listName) {
     $.get("/api/user_data").then(function (data) {
       let userID = data.user.id;
@@ -38,13 +39,10 @@ $(function () {
           location.reload();
         });
       } catch (error) {
-        console.log("this is in the memebers.js");
         console.log(error);
         res.status(500).end();
       }
     });
-
-    // console.log(listName, userID, "this is still in the members.js")
   }
 });
 
@@ -52,6 +50,7 @@ $("#more-items").on("click", function (event) {
   event.stopPropagation();
   renderEtsy();
 });
+
 function renderEtsy() {
   $.get("/api/etsy");
   location.reload();
@@ -72,12 +71,6 @@ $(".list-group-item").on("click", function (event) {
   });
 });
 
-$(".fas.fa-trash-alt").on("click", function (event) {
-  event.stopPropagation();
-  let trashId = $(this).attr("data");
-  console.log(trashId);
-});
-
 $(".fas.fa-gift").on("click", function (event) {
   event.stopPropagation();
   if (localStorage.getItem("listId") != null) {
@@ -89,4 +82,18 @@ $(".fas.fa-gift").on("click", function (event) {
       list: listId,
     });
   }
+});
+
+// This button click will delete a list
+$(".fas.fa-trash-alt").on("click", function (event) {
+  event.stopPropagation();
+  let trashId = $(this).attr("data");
+  // console.log(trashId);
+
+  // this makes the call to our api controller that will delete it from the db.
+  $.post("/api/delete_list", {
+    dlt_list: trashId,
+  }).then(function (data) {
+    location.reload();
+  });
 });

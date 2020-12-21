@@ -96,4 +96,8 @@ module.exports = function (app) {
 
     res.render("members", hbsObject);
   });
+  app.post("/members", isAuthenticated, async function (req, res) {
+    let stuff = req.name;
+    res.send(stuff);
+  });
 };

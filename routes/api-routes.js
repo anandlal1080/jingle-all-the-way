@@ -168,4 +168,17 @@ module.exports = function (app) {
     res.json(updateGiftList);
   });
   // =============================================================
+  // this route removes the user list selected from the memberspage
+  // and returns the updated list
+  app.post("/api/delete_list", async function (req, res) {
+    let removeList = req.body.dlt_list;
+
+    await db.List.destroy({
+      where: {
+        id: removeList,
+      },
+    });
+
+    res.end();
+  });
 };
