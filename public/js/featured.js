@@ -32,7 +32,6 @@ $(function () {
   function sendList(listName) {
     $.get("/api/user_data").then(function (data) {
       let userID = data.user.id;
-
       try {
         $.post("/api/user_lists", {
           name: listName,
@@ -90,7 +89,8 @@ $(".list-group-item").on("click", function (event) {
     $("#gifts-location").empty();
 
     // this is where I'm going to dynamically create the gift items inside each list
-    for (let i = 0; i < data.length; i++) {
+    console.log(data);
+    for (let i = data.length-1; i >= 0; i--) {
       let name = data[i].name;
       let image = data[i].url;
 
@@ -116,11 +116,16 @@ $(".fas.fa-gift").on("click", function (event) {
   event.stopPropagation();
   if (localStorage.getItem("listId") != null) {
     let etsyId = $(this).attr("data");
-    const listId = localStorage.getItem("listId");
+    $.get("/api/user_data").then(function (data) {
+      let userID = data.user.id;
+      console.log(etsyId);
+      const listId = localStorage.getItem("listId");
 
-    $.post("/api/etsy_items", {
-      etsy: etsyId,
-      list: listId,
+      $.post("/api/etsy_items", {
+        etsy: etsyId,
+        list: listId,
+        userId: userID,
+      });
     });
   }
 });
