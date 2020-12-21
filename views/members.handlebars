@@ -3,7 +3,7 @@
 <main>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Jingle All The Way</a>
+            <a class="navbar-brand" href="#" id="customHead">Jingle All The Way</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -58,12 +58,8 @@
 
 
         <div class="col-7">
-            <button class="btn btn-outline-secondary" id="imgload" type="button" disabled style="display: none;">
-                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                Loading...
-            </button>
             <button class="btn btn-outline-secondary mt-2 mb-2" type="submit" id="more-items">Next 25</button>
-            <button class="btn btn-outline-secondary mt-2 mb-2" type="submit" id="clear-etsy">REFRESH</button>
+            <button class="btn btn-outline-secondary mt-2 mb-2" type="submit" id="more-items">REFRESH</button>
             <div class="row" id="etsy-items">
 
                 {{#each etsys}}
@@ -80,7 +76,7 @@
 
         <div class="col-2">
             <div class="row justify-content-center">
-                <div class="text">
+                <div class="text justify-content-center">
                     <div class="outer" id="gifts-location">
                         {{!-- {{#each gifts}}
 
