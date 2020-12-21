@@ -36,4 +36,8 @@ $(document).ready(function () {
         console.log(err);
       });
   }
+  renderEtsy();
+  function renderEtsy() {
+    $.get("/api/etsy");
+  }
 });

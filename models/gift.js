@@ -4,6 +4,8 @@ module.exports = function (sequelize, DataTypes) {
 
     name: DataTypes.STRING,
     url: DataTypes.TEXT,
+    listing_url: DataTypes.TEXT,
+    price: DataTypes.STRING,
   });
 
   Gift.associate = function (models) {
