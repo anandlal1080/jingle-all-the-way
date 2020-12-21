@@ -37,6 +37,7 @@ h1{
 .inner img {
     transition: all 1.5s ease;
     height: 150px;
+    border: black solid 2px;
 }
 .inner:hover img {
     transform: scale(1.5);
@@ -66,4 +67,13 @@ h1{
     box-shadow: 8px 8px 5px 2px #888888;
     font-size: 1.0rem;
 }
+
+
+
+/* #test {
+    margin-top: 10px;
+    color:red;
+
+} */
+
 
