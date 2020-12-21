@@ -31,7 +31,7 @@ module.exports = function (app) {
   });
 
   // Route for logging user out
-  app.get("/logout", function (req, res) {
+  app.get("/api/logout", function (req, res) {
     req.logout();
     res.render("index");
   });
@@ -68,16 +68,14 @@ module.exports = function (app) {
 
   // Tester code to be finalized =====================================
   app.post("/api/user_lists", async function (req, res) {
-    console.log(req.body.name.listName);
-    console.log(req.body.userId);
-
+    const userListName = req.body.name.listName + req.body.userId;
     db.List.create({
-      name: req.body.name.listName,
+      name: userListName,
     })
       .then(async function () {
         const newList = await db.List.findOne({
           where: {
-            name: req.body.name.listName,
+            name: userListName,
           },
         });
         const userInstance = await db.User.findOne({
@@ -96,7 +94,7 @@ module.exports = function (app) {
   app.get("/api/etsy", async function (req, res) {
     await axios
       .get(
-        `https://openapi.etsy.com/v2/listings/active/?api_key=${process.env.ETSY_KEY}&includes=Images`
+        `https://openapi.etsy.com/v2/listings/active/?api_key=${process.env.ETSY_KEY}&includes=Images(url_170x135):1&fields=url,title,price`
       )
       .then(async function ({ data }) {
         let etsy = [];
@@ -105,6 +103,8 @@ module.exports = function (app) {
           item = {
             title: data.results[i].title,
             image: data.results[i].Images[0].url_170x135,
+            listing_url: data.results[i].url,
+            price: data.results[i].price,
           };
           await db.Etsy.create(item);
           etsy.push(item);
@@ -137,6 +137,8 @@ module.exports = function (app) {
           id: giftsId[i]["Gifts.id"],
           name: giftsId[i]["Gifts.name"],
           url: giftsId[i]["Gifts.url"],
+          listing_url: giftsId[i]["Gifts.listing_url"],
+          price: giftsId[i]["Gifts.price"],
         };
         userGiftList.push(gifts);
       }
@@ -157,6 +159,8 @@ module.exports = function (app) {
     let updateGiftList = await db.Gift.create({
       name: etsyItem.title,
       url: etsyItem.image,
+      listing_url: etsyItem.listing_url,
+      price: etsyItem.price,
     });
     let updateList = await db.List.findOne({
       where: {
@@ -182,5 +186,12 @@ module.exports = function (app) {
     res.end();
   });
 
-  
+  app.post("/api/clear_etsy", async function (req, res) {
+    await db.Etsy.destroy({
+      where: {},
+      truncate: true,
+    });
+
+    res.end();
+  });
 };

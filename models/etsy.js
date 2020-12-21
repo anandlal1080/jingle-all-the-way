@@ -4,13 +4,9 @@ module.exports = function (sequelize, DataTypes) {
 
     title: DataTypes.STRING,
     image: DataTypes.TEXT,
+    listing_url: DataTypes.TEXT,
+    price: DataTypes.STRING,
   });
-
-  Etsy.associate = function (models) {
-    models.Etsy.belongsToMany(models.Gift, {
-      through: "etsygifts",
-    });
-  };
 
   return Etsy;
 };

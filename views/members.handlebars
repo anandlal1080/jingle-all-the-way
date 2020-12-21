@@ -10,15 +10,11 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
+
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index">Home</a>
+                        <a class="nav-link" id="logout">Log out</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="index" id="logout">Log out</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="login">Log In</a>
-                    </li>
+
                 </ul>
             </div>
         </div>
@@ -37,8 +33,8 @@
         <div class="col-3">
             <form class="create-form">
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control mt-2" placeholder="ADD LIST" aria-label="Recipient's username"
-                        aria-describedby="button-addon2">
+                    <input type="text" class="form-control mt-2" placeholder="ADD LIST"
+                        aria-label="Recipient's username" aria-describedby="button-addon2">
                     <button class="btn btn-outline-secondary mt-2" type="submit" id="button-addon2">CREATE LIST</button>
                 </div>
             </form>
@@ -62,8 +58,12 @@
 
 
         <div class="col-7">
+            <button class="btn btn-outline-secondary" id="imgload" type="button" disabled style="display: none;">
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                Loading...
+            </button>
             <button class="btn btn-outline-secondary mt-2 mb-2" type="submit" id="more-items">Next 25</button>
-             <button class="btn btn-outline-secondary mt-2 mb-2" type="submit" id="more-items">REFRESH</button>
+            <button class="btn btn-outline-secondary mt-2 mb-2" type="submit" id="clear-etsy">REFRESH</button>
             <div class="row" id="etsy-items">
 
                 {{#each etsys}}
