@@ -68,13 +68,14 @@ module.exports = function (app) {
 
   // Tester code to be finalized =====================================
   app.post("/api/user_lists", async function (req, res) {
+    const userListName = req.body.name.listName + req.body.userId;
     db.List.create({
-      name: req.body.name.listName,
+      name: userListName,
     })
       .then(async function () {
         const newList = await db.List.findOne({
           where: {
-            name: req.body.name.listName,
+            name: userListName,
           },
         });
         const userInstance = await db.User.findOne({
