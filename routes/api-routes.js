@@ -68,9 +68,6 @@ module.exports = function (app) {
 
   // Tester code to be finalized =====================================
   app.post("/api/user_lists", async function (req, res) {
-    console.log(req.body.name.listName);
-    console.log(req.body.userId);
-
     db.List.create({
       name: req.body.name.listName,
     })
