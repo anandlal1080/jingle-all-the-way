@@ -58,8 +58,10 @@
 
 
         <div class="col-7">
-            <img src="https://media.giphy.com/media/52qtwCtj9OLTi/giphy.gif" id="imgload" style="display: none;"
-                width="100" height="50">
+            <button class="btn btn-outline-secondary" id="imgload" type="button" disabled style="display: none;">
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                Loading...
+            </button>
             <button class="btn btn-outline-secondary mt-2 mb-2" type="submit" id="more-items">Next 25</button>
             <button class="btn btn-outline-secondary mt-2 mb-2" type="submit" id="clear-etsy">REFRESH</button>
             <div class="row" id="etsy-items">
