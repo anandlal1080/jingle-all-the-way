@@ -11,7 +11,7 @@ $(function () {
   const listInput = $(".form-control");
 
   // When the form is submitted, we send the data to our api/db
-  $(".create-form").on("submit", function (event) {
+  $(newListForm).on("submit", function (event) {
     event.preventDefault();
     console.log("click me");
     // get our user data from the form and store it in a new object
@@ -43,8 +43,6 @@ $(function () {
         res.status(500).end();
       }
     });
-
-    // console.log(listName, userID, "this is still in the members.js")
   }
 });
 
