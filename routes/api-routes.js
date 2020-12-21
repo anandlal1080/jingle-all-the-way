@@ -102,6 +102,8 @@ module.exports = function (app) {
           item = {
             title: data.results[i].title,
             image: data.results[i].Images[0].url_170x135,
+            listing_url: data.results[i].url,
+            price: data.results[i].price,
           };
           await db.Etsy.create(item);
           etsy.push(item);
