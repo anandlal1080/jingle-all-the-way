@@ -63,6 +63,7 @@ function renderEtsy() {
 
 localStorage.clear();
 
+// this is our click function for lists in col-1
 $(".list-group-item").on("click", function (event) {
   event.stopPropagation();
   let listId = $(this).attr("data");
@@ -70,8 +71,9 @@ $(".list-group-item").on("click", function (event) {
   $.post("/api/list_items", {
     list: listId,
   }).then(function (data) {
+    // This code snipit is how we were passing data to our html route====
     // $.get("/members", { userGifts: data });
-
+    // ==================================================================
 
     // this is where I"m going to clear the list before populating it
     $("#gifts-location").empty();
@@ -98,7 +100,7 @@ $(".list-group-item").on("click", function (event) {
     }
   });
 });
-
+// this is our click function for the gifts Icon
 $(".fas.fa-gift").on("click", function (event) {
   event.stopPropagation();
   if (localStorage.getItem("listId") != null) {
@@ -116,7 +118,6 @@ $(".fas.fa-gift").on("click", function (event) {
 $(".fas.fa-trash-alt").on("click", function (event) {
   event.stopPropagation();
   let trashId = $(this).attr("data");
-  // console.log(trashId);
 
   // this makes the call to our api controller that will delete it from the db.
   $.post("/api/delete_list", {
