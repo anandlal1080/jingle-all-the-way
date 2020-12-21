@@ -108,14 +108,7 @@ module.exports = function (app) {
   });
 
   app.post("/api/list_items", async function (req, res) {
-    // let list = await db.List.findOne({
-    //   where: {
-    //     id: req.body.list,
-    //   },
-    //   raw: true,
-    // });
     try {
-      // console.log(req.body);
       let giftsId = await db.List.findAll({
         where: {
           id: req.body.list,
