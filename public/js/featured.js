@@ -94,10 +94,22 @@ $(".list-group-item").on("click", function (event) {
         let image = data[i].url;
         let price = data[i].price;
         let url = data[i].listing_url;
+        let id = data[i].id;
+        let icon = $(
+          $("<i>")
+            .attr("data", listId)
+            .attr("data-id", id)
+            .attr(
+              "class",
+              "fas fa-trash-alt float-right text-danger delete-note gift-trash"
+            )
+        );
 
         let br = $("<br>");
 
-        let cardEl = $("<div>").attr("class", "card shadow mt-5");
+        let cardEl = $("<div>")
+          .attr("id", `card-${id}`)
+          .attr("class", "card shadow mt-5");
         let cardInner = $("<div>").attr("class", "inner");
         let imgEl = $("<img>").attr("src", image);
         let cardBody = $("<div>").attr("class", "card-body text-justify");
@@ -111,11 +123,35 @@ $(".list-group-item").on("click", function (event) {
             cardInner
               .append(imgEl)
               .append(
-                cardBody.append(pEl).append(spanEl).append(br).append(urlEl)
+                cardBody
+                  .append(pEl)
+                  .append(spanEl)
+                  .append(br)
+                  .append(urlEl)
+                  .append(br)
+                  .append(icon)
               )
           )
         );
       }
+      $(".gift-trash").on("click", function (event) {
+        event.stopPropagation();
+        let trashId = $(this).attr("data-id");
+        let listId = $(this).attr("data");
+
+        console.log(trashId);
+        console.log(listId);
+        console.log("you've clicked me!");
+
+        $.post("/api/new_trash_icon", {
+          giftId: trashId,
+          listId: listId,
+        });
+
+        // working here =====================================================
+        $(`#card-${trashId}`).remove();
+        // ==================================================================
+      });
     }
   });
 });
@@ -149,7 +185,9 @@ $(".fas.fa-gift").on("click", function (event) {
             )
         );
         let br = $("<br>");
-        let cardEl = $("<div>").attr("class", "card shadow mt-5");
+        let cardEl = $("<div>")
+          .attr("id", `card-${id}`)
+          .attr("class", "card shadow mt-5");
         let cardInner = $("<div>").attr("class", "inner");
         let imgEl = $("<img>").attr("src", image);
         let cardBody = $("<div>").attr("class", "card-body text-justify");
@@ -187,7 +225,11 @@ $(".fas.fa-gift").on("click", function (event) {
           $.post("/api/new_trash_icon", {
             giftId: trashId,
             listId: listId,
-          }).then(function (data) {});
+          });
+
+          // working here =====================================================
+          $(`#card-${id}`).remove();
+          // ==================================================================
         });
       });
     });
