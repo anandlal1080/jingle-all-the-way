@@ -60,3 +60,13 @@ JavaScript: created variables, ajax calls to the API, functions to bring informa
 MIT license: http://opensource.org/licenses/MIT
 Demo / Generator : vincentgarreau.com/particles.js
 GitHub : github.com/VincentGarreau/particles.js
+
+### License
+License
+The MIT License (MIT) Copyright © 2020 Permission is hereby granted, free of charge, to any person obtaining a copy of this application and associated document files, to deal in the application without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the application, and to permit persons to whom the application is furnished to do so, subject to the following conditions: The above copyright notice and this permission notice shall be included in all copies or substantial portions of the application. THE APPLICATION IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIN, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+### Project Contributors via GitHub User Name: 
+* Rick-Smart
+* JacobCounts
+* anandlal1080
+* DaniCutler
