@@ -29,7 +29,7 @@ User is able to delete lists when finished.
 
 
 
-USER STORY: As a family member/friend I would like to be able to create lists online so that I am able to stay organized. I would like to see suggested gifts and be able to click on them to add to a list. I would like to be able to see photos and a URL link that takes me to Etsy where there is a description of the item. This will make my holiday shopping much easier.
+### USER STORY: As a family member/friend I would like to be able to create lists online so that I am able to stay organized. I would like to see suggested gifts and be able to click on them to add to a list. I would like to be able to see photos and a URL link that takes me to Etsy where there is a description of the item. This will make my holiday shopping much easier.
 
 
 ### TASKS:
@@ -39,7 +39,7 @@ JavaScript: created variables, ajax calls to the API, functions to bring informa
 
 
 
-# Technologies, Languages, Frameworks being used:
+### Technologies, Languages, Frameworks being used:
 
 * API-
 * JavaScript- used to dynamically change the html and store-user input
