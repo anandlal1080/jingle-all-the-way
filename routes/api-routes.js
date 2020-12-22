@@ -108,29 +108,60 @@ module.exports = function (app) {
 
   app.post("/api/list_items", async function (req, res) {
     try {
-      let giftsId = await db.List.findAll({
+      const listInstance = await db.List.findOne({
         where: {
           id: req.body.list,
         },
-        include: [{ model: db.Gift }],
-        through: "giftlist",
-        raw: true,
       });
-      userGiftList = [];
-      for (let i = 0; i < giftsId.length; i++) {
-        let gifts = {
-          id: giftsId[i]["Gifts.id"],
-          name: giftsId[i]["Gifts.name"],
-          url: giftsId[i]["Gifts.url"],
-          listing_url: giftsId[i]["Gifts.listing_url"],
-          price: giftsId[i]["Gifts.price"],
+
+      const allGifts = await listInstance.getGifts();
+      const userGiftList = [];
+      for (const giftItem of allGifts) {
+        const giftToPush = {
+          id: giftItem.id,
+          name: giftItem.name,
+          url: giftItem.url,
+          listing_url: giftItem.listing_url,
+          price: giftItem.price,
         };
-        userGiftList.push(gifts);
+        userGiftList.push(giftToPush);
       }
+
+      // allGifts.forEach(function (giftItem, i, array) {
+      //   const giftToPush = {
+      //     id: giftItem.id,
+      //     name: giftItem.name,
+      //     url: giftItem.url,
+      //     listing_url: giftItem.listing_url,
+      //     price: giftItem.price,
+      //   };
+      //   userGiftList.push(giftToPush);
+      // });
+
+      // console.log("All Gifts", allGifts[0].name);
+      // let giftsId = await db.List.findAll({
+      //   where: {
+      //     id: req.body.list,
+      //   },
+      //   include: [{ model: db.Gift }],
+      //   through: "giftlist",
+      //   raw: true,
+      // });
+      // for (let i = 0; i < giftsId.length; i++) {
+      //   let gifts = {
+      //     id: giftsId[i]["Gifts.id"],
+      //     name: giftsId[i]["Gifts.name"],
+      //     url: giftsId[i]["Gifts.url"],
+      //     listing_url: giftsId[i]["Gifts.listing_url"],
+      //     price: giftsId[i]["Gifts.price"],
+      //   };
+      //   userGiftList.push(gifts);
+      // }
+      res.json(userGiftList);
     } catch (error) {
       console.log(error);
+      res.status(500).json({});
     }
-    res.json(userGiftList);
   });
 
   app.post("/api/etsy_items", async function (req, res) {
@@ -150,7 +181,7 @@ module.exports = function (app) {
     });
     let updateList = await db.List.findOne({
       where: {
-        [Op.and]: [{ id: req.body.list }, { UserId: req.body.userId }],
+        [Op.and]: [{ id: req.body.list }, { UserId: req.user.id }],
       },
     });
     await updateList.addGift(updateGiftList);
@@ -183,13 +214,13 @@ module.exports = function (app) {
 
   app.post("/api/new_trash_icon", async function (req, res) {
     const { giftId, listId } = req.body;
-    db.Gift.findOne({
+    const giftInstance = await db.Gift.findOne({
       where: { id: giftId },
-    })
-      .then((gift) => {
-        gift.removeList([listId]);
-        res.sendStatus(200);
-      })
-      .catch((e) => console.log(e));
+    });
+
+    giftInstance.removeList(listId);
+    res.sendStatus(200);
+
+    // .catch((e) => console.log(e));
   });
 };
