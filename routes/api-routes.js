@@ -3,7 +3,6 @@ const db = require("../models");
 const passport = require("../config/passport");
 const axios = require("axios");
 const { Op } = require("sequelize");
-const { map } = require("jquery");
 
 module.exports = function (app) {
   // Using the passport.authenticate middleware with our local strategy.

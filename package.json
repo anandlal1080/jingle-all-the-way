@@ -18,7 +18,6 @@
     "express": "^4.17.1",
     "express-handlebars": "^5.2.0",
     "express-session": "^1.16.1",
-    "jquery": "^3.5.1",
     "jsdom": "^16.4.0",
     "mysql2": "^1.6.5",
     "passport": "^0.4.0",
