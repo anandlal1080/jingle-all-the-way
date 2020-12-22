@@ -179,12 +179,16 @@ $(".fas.fa-gift").on("click", function (event) {
           event.stopPropagation();
           let trashId = $(this).attr("data-id");
           let listId = $(this).attr("data");
-        
+
           console.log(trashId);
           console.log(listId);
-          console.log("you've clicked me!")
-        });
+          console.log("you've clicked me!");
 
+          $.post("/api/new_trash_icon", {
+            giftId: trashId,
+            listId: listId,
+          }).then(function (data) {});
+        });
       });
     });
   }
@@ -213,5 +217,3 @@ function logOut() {
   $.get("/api/logout");
   location.reload();
 }
-
-

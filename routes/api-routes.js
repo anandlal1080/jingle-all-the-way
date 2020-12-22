@@ -180,4 +180,16 @@ module.exports = function (app) {
 
     res.end();
   });
+
+  app.post("/api/new_trash_icon", async function (req, res) {
+    const { giftId, listId } = req.body;
+    db.Gift.findOne({
+      where: { id: giftId },
+    })
+      .then((gift) => {
+        gift.removeList([listId]);
+        res.sendStatus(200);
+      })
+      .catch((e) => console.log(e));
+  });
 };
