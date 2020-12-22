@@ -135,12 +135,18 @@ $(".fas.fa-gift").on("click", function (event) {
         userId: userID,
       });
     });
-    // console.log($(this).siblings());
-
+    let listId = localStorage.getItem("listId");
     let name = $(`#title-${etsyId}`).text();
     let image = $(`#image-${etsyId}`).attr("src");
     let price = $(`#price-${etsyId}`).text();
     let url = $(`#listingUrl-${etsyId}`).attr("href");
+    let icon = $(
+      $("<i>")
+        .attr("id", `del-${etsyId}`)
+        .attr("data", listId)
+        .attr("class", "fas fa-trash-alt float-right text-danger delete-note")
+        .text("Remove")
+    );
     console.log(url);
     let br = $("<br>");
     let cardEl = $("<div>").attr("class", "card shadow mt-5");
@@ -153,12 +159,19 @@ $(".fas.fa-gift").on("click", function (event) {
       .attr("href", url)
       .attr("target", "_blank")
       .text("Item Link");
-    console.log(urlEl);
     $("#gifts-location").prepend(
       cardEl.append(
         cardInner
           .append(imgEl)
-          .append(cardBody.append(pEl).append(spanEl).append(br).append(urlEl))
+          .append(
+            cardBody
+              .append(pEl)
+              .append(spanEl)
+              .append(br)
+              .append(urlEl)
+              .append(br)
+              .append(icon)
+          )
       )
     );
   }
