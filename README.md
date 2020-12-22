@@ -35,7 +35,12 @@ User is able to delete lists when finished.
 ### TASKS:
 Create HTML with navbar, login/signup, Christmas countdown. On the Member page there is a create list button, wish list, items pulled from the API, refresh button, list contents on the right side. 
 Used Bootstrap for html skeleton looks
-JavaScript: created variables, ajax calls to the API, functions to bring information onto the page.
+JavaScript: created variables, ajax calls to the API, functions to bring information onto the page.\
+
+### FUTURE DEVELOPMENTS:
+* Be able to email list
+* Be able to search for specific items
+* User is able to skip or change the song
 
 
 
