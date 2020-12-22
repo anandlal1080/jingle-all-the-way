@@ -19,7 +19,7 @@ When I click on login/signup page I am directed to a login form, if user doesnâ€
 
 Once the user logs in they will be directed to a member specific view which displays a create list form, lists that have been made, a suggestion of 25 gifts.
 
-![Overview](./images/userpage.png)
+![giftpage](https://user-images.githubusercontent.com/72281065/102923390-e54a7f00-444c-11eb-997c-e2f918d270b8.PNG)
 
 ###
 
@@ -27,7 +27,6 @@ When the user selects a list from the left, the list shows on the right side of 
 User is able to delete lists when finished. 
 
 
-![Overview](./images/suggestionspg.png)
 
 
 USER STORY: As a family member/friend I would like to be able to create lists online so that I am able to stay organized. I would like to see suggested gifts and be able to click on them to add to a list. I would like to be able to see photos and a URL link that takes me to Etsy where there is a description of the item. This will make my holiday shopping much easier.
