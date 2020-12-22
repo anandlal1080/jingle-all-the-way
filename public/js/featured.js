@@ -126,47 +126,74 @@ $(".fas.fa-gift").on("click", function (event) {
     let etsyId = $(this).attr("data");
     $.get("/api/user_data").then(function (data) {
       let userID = data.user.id;
-      console.log(etsyId);
       const listId = localStorage.getItem("listId");
 
       $.post("/api/etsy_items", {
         etsy: etsyId,
         list: listId,
         userId: userID,
+      }).then(function (data) {
+        let listId = localStorage.getItem("listId");
+        let name = data.name;
+        let image = data.url;
+        let price = data.price;
+        let url = data.listing_url;
+        let id = data.id;
+        let icon = $(
+          $("<i>")
+            .attr("data", listId)
+            .attr("data-id", id)
+            .attr(
+              "class",
+              "fas fa-trash-alt float-right text-danger delete-note gift-trash"
+            )
+        );
+        let br = $("<br>");
+        let cardEl = $("<div>").attr("class", "card shadow mt-5");
+        let cardInner = $("<div>").attr("class", "inner");
+        let imgEl = $("<img>").attr("src", image);
+        let cardBody = $("<div>").attr("class", "card-body text-justify");
+        let pEl = $("<p>").attr("style", "margin-left: 0").text(name);
+        let spanEl = $("<span>").attr("style", "font-weight: bold").text(price);
+        let urlEl = $("<a>")
+          .attr("href", url)
+          .attr("target", "_blank")
+          .text("Item Link");
+        $("#gifts-location").prepend(
+          cardEl.append(
+            cardInner
+              .append(imgEl)
+              .append(
+                cardBody
+                  .append(pEl)
+                  .append(spanEl)
+                  .append(br)
+                  .append(urlEl)
+                  .append(br)
+                  .append(icon)
+              )
+          )
+        );
+        // event listener will go here
+        $(".gift-trash").on("click", function (event) {
+          event.stopPropagation();
+          let trashId = $(this).attr("data-id");
+          let listId = $(this).attr("data");
+        
+          console.log(trashId);
+          console.log(listId);
+          console.log("you've clicked me!")
+        });
+
       });
     });
-    // console.log($(this).siblings());
-
-    let name = $(`#title-${etsyId}`).text();
-    let image = $(`#image-${etsyId}`).attr("src");
-    let price = $(`#price-${etsyId}`).text();
-    let url = $(`#listingUrl-${etsyId}`).attr("href");
-    console.log(url);
-    let br = $("<br>");
-    let cardEl = $("<div>").attr("class", "card shadow mt-5");
-    let cardInner = $("<div>").attr("class", "inner");
-    let imgEl = $("<img>").attr("src", image);
-    let cardBody = $("<div>").attr("class", "card-body text-justify");
-    let pEl = $("<p>").attr("style", "margin-left: 0").text(name);
-    let spanEl = $("<span>").attr("style", "font-weight: bold").text(price);
-    let urlEl = $("<a>")
-      .attr("href", url)
-      .attr("target", "_blank")
-      .text("Item Link");
-    console.log(urlEl);
-    $("#gifts-location").prepend(
-      cardEl.append(
-        cardInner
-          .append(imgEl)
-          .append(cardBody.append(pEl).append(spanEl).append(br).append(urlEl))
-      )
-    );
   }
 });
 
 // This button click will delete a list
-$(".fas.fa-trash-alt").on("click", function (event) {
+$(".fa-trash-alt").on("click", function (event) {
   event.stopPropagation();
+  if ($(this).attr("data-id")) return;
   let trashId = $(this).attr("data");
 
   // this makes the call to our api controller that will delete it from the db.
@@ -186,3 +213,5 @@ function logOut() {
   $.get("/api/logout");
   location.reload();
 }
+
+
