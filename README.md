@@ -31,6 +31,7 @@ User is able to delete lists when finished.
 
 ### USER STORY: As a family member/friend I would like to be able to create lists online so that I am able to stay organized. I would like to see suggested gifts and be able to click on them to add to a list. I would like to be able to see photos and a URL link that takes me to Etsy where there is a description of the item. This will make my holiday shopping much easier.
 
+### DEPLOYED LINK: https://jingle-all-the-way.herokuapp.com/
 
 ### TASKS:
 Create HTML with navbar, login/signup, Christmas countdown. On the Member page there is a create list button, wish list, items pulled from the API, refresh button, list contents on the right side. 
