@@ -26,12 +26,15 @@
     </nav>
 </main>
 <div class="header">
-    <div class="header-img">
+    <div class="row">
+        <div class="col-1">
 
+        </div>
+        <div class="col-11 text-center">
+
+            <h1>Welcome {{ names }} <span class="member-name"></span></h1>
+        </div>
     </div>
-    <h1>Welcome {{ names }} <span class="member-name"></span></h1>
-
-
 </div>
 
 <!--left side of page container-->
@@ -57,7 +60,24 @@
                     {{/each}}
 
                 </ul>
+                <p>
 
+                    <button class="btn btn-secondary mt-1" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        Instructions
+                    </button>
+                </p>
+                <div class="collapse" id="collapseExample">
+                    <div class="card card-body">
+                        <ul>
+                            <li>Create a List</li>
+                            <li>Select the List</li>
+                            <li>Add Gifts to List</li>
+                            <li>Toggle between Lists to edit.</li>
+                        </ul>
+
+                    </div>
+                </div>
             </div>
         </div>
 

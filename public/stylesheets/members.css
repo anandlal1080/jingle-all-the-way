@@ -61,6 +61,11 @@ h1 {
   background: grey;
   color: white;
 }
+
+#clear-etsy {
+  background: grey;
+  color: white;
+}
 .form-label {
   color: crimson;
   font-size: 3rem;
