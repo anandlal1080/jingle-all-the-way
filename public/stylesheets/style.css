@@ -217,10 +217,10 @@ body {
   text-shadow: 2px 2px rgb(253, 253, 253);
   margin-left: 30%;
 }
-#login h2,
+/* #login h2,
 p {
   margin-left: 30%;
-}
+} */
 #login p {
   font-size: 2rem;
   margin-left: 40%;
@@ -241,4 +241,17 @@ label {
   font-size: 25px;
   text-shadow: 2px 2px rgb(253, 253, 253);
   margin-left: 30%;
+}
+
+.card {
+  flex-direction: row;
+}
+
+.etsy-item {
+  margin-bottom: 0.2rem;
+}
+
+.title {
+  overflow: hidden;
+  font-size: 1.25rem;
 }

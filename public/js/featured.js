@@ -77,6 +77,11 @@ localStorage.clear();
 // this is our click function for lists in col-1
 $(".list-group-item").on("click", function (event) {
   event.stopPropagation();
+  var classHighlight = "highlight";
+  $thumbs = $(".list-group-item");
+  $thumbs.removeClass(classHighlight);
+  $(this).addClass(classHighlight);
+
   let listId = $(this).attr("data");
   localStorage.setItem("listId", listId);
   $.post("/api/list_items", {
@@ -101,7 +106,7 @@ $(".list-group-item").on("click", function (event) {
             .attr("data-id", id)
             .attr(
               "class",
-              "fas fa-trash-alt float-right text-danger delete-note gift-trash"
+              "fas fa-trash-alt  fa-2x float-right text-danger delete-note gift-trash"
             )
         );
 
@@ -117,7 +122,11 @@ $(".list-group-item").on("click", function (event) {
         let spanEl = $("<span>")
           .attr("style", "font-weight: bold")
           .text(`Price: $${price}`);
-        let urlEl = $("<a>").attr("href", url).text("Item Link");
+        let urlEl = $("<a>")
+          .attr("href", url)
+          .text("Item Link")
+          .attr("target", "_blank")
+          .text("Item Link");
         $("#gifts-location").append(
           cardEl.append(
             cardInner
@@ -126,6 +135,7 @@ $(".list-group-item").on("click", function (event) {
                 cardBody
                   .append(pEl)
                   .append(spanEl)
+                  .append($("<p>"))
                   .append(br)
                   .append(urlEl)
                   .append(br)
@@ -181,7 +191,7 @@ $(".fas.fa-gift").on("click", function (event) {
             .attr("data-id", id)
             .attr(
               "class",
-              "fas fa-trash-alt float-right text-danger delete-note gift-trash"
+              "fas fa-trash-alt fa-2x float-right text-danger delete-note gift-trash"
             )
         );
         let br = $("<br>");
@@ -205,6 +215,7 @@ $(".fas.fa-gift").on("click", function (event) {
                 cardBody
                   .append(pEl)
                   .append(spanEl)
+                  .append($("<p>"))
                   .append(br)
                   .append(urlEl)
                   .append(br)

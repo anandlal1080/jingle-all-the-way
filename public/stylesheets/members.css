@@ -38,6 +38,7 @@ h1 {
   overflow: hidden;
   font-size: 0.85rem;
 }
+
 .inner img {
   transition: all 1.5s ease;
   height: 150px;
@@ -70,6 +71,10 @@ h1 {
   /* box-shadow: 8px 8px 5px 2px #888888; */
   font-size: 1rem;
   color: black;
+}
+.highlight {
+  background-color: lightgreen;
+  font-weight: bold;
 }
 
 #customHead {

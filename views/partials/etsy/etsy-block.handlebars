@@ -1,28 +1,38 @@
-<div class="card shadow m-1" style="width: 11rem">
-    <div class="inner">
-        <img src={{ image }} id="image-{{id}}" class="card-img-top" alt="..." />
+<div class="row justify-content-between card shadow etsy-item">
+    <div class=" col-2 ">
+        <div class="inner">
+            <img src={{ image }} id="image-{{id}}" class="card-img-top" alt="..." />
+        </div>
+    </div>
+    <div class="col-6">
         <div class="card-body text-justify">
 
-            <p id="title-{{id}}">{{ title }}</p>
+            <p class="title" id="title-{{id}}">{{ title }}</p>
 
 
-            <div class="card text-center">
-                <div class="card-footer shadow">
-                    <ul class="nav nav-pills card-header-pills">
-                        <li class="nav-item">
-                            <span id="price-{{id}}"><b>Price:${{ price }} </b> </span>
-                            <a id="listingUrl-{{id}}" href={{ listing_url }} target="_blank">Listing URL</a>
-                        <li class="nav-item">
-                        </li>
+        </div>
 
-                        </li>
-                    </ul>
-                    <div class="card-footer shadow gifthover">
-                        <button><i class="fas fa-gift fa-2x text-success delete-note" data={{ id }}
-                                style="text-align:center"></i> </button>
-                    </div>
+
+    </div>
+    <div class="col-2">
+        <div class="card text-center">
+            <div class="card-footer shadow">
+                <ul class="nav nav-pills card-header-pills">
+                    <li class="nav-item">
+                        <span id="price-{{id}}"><b>Price:${{ price }} </b> </span>
+                        <a id="listingUrl-{{id}}" href={{ listing_url }} target="_blank">Listing URL</a>
+                    <li class="nav-item">
+                    </li>
+
+                    </li>
+                </ul>
+                <div class="card-footer shadow gifthover">
+                    <button><i class="fas fa-gift fa-2x text-success delete-note" data={{ id }}
+                            style="text-align:center"></i> </button>
                 </div>
             </div>
         </div>
+
+
     </div>
 </div>

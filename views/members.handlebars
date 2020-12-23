@@ -72,15 +72,15 @@
             <button class="btn btn-outline-secondary mt-2 mb-2" type="submit" id="more-items">Load More Items</button>
             <button class="btn btn-outline-secondary mt-2 mb-2" type="submit" id="clear-etsy">REFRESH</button>
             <div class="row" id="etsy-items">
-
-                {{#each etsys}}
-
-
-                {{> etsy/etsy-block }}
+                <div class="col">
+                    {{#each etsys}}
 
 
-                {{/each}}
+                    {{> etsy/etsy-block }}
 
+
+                    {{/each}}
+                </div>
             </div>
         </div>
 
