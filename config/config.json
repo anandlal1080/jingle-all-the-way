@@ -1,10 +1,11 @@
 {
   "development": {
     "username": "root",
-    "password": "root",
+    "password": "",
     "database": "jingle_all_the_way_db",
     "host": "127.0.0.1",
     "dialect": "mysql"
+    
   },
   "test": {
     "username": "root",

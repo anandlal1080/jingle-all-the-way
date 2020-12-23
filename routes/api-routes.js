@@ -92,9 +92,9 @@ module.exports = function (app) {
         let etsy = [];
 
         for (let i = 0; i < data.results.length; i++) {
-          item = {
+          const item = {
             title: data.results[i].title,
-            image: data.results[i].Images[0].url_170x135,
+            image: data.results[i]?.Images[0].url_170x135,
             listing_url: data.results[i].url,
             price: data.results[i].price,
           };
